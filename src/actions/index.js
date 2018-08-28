@@ -1,10 +1,10 @@
-import { CHANGE_MESSAGE } from './types'
+import { SET_PARTICIPANT } from './types'
 
 // Define and export your action creators here
 // EXAMPLE:
 
-export const changeExampleMessage = () => {
+export const setParticipant = () => {
   return {
-    type: CHANGE_MESSAGE
+    type: SET_PARTICIPANT
   }
 }

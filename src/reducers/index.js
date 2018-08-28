@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import exampleReducer from './exampleReducer'
-//import top level reducers
+import authReducer from './authReducer'
+import visualReducer from './visualReducer'
 
 const rootReducer = combineReducers({
-  exampleState: exampleReducer
+  auth: authReducer,
+  visual: visualReducer
 })
 
 export default rootReducer;
