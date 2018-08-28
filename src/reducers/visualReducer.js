@@ -4,7 +4,11 @@ const visualStateDefault = {
   loading: false,
   navBar: {
     left: [],
-    right: []
+    right: [
+      { as: "a", content: "Contact", key: "contact" },
+      { as: "a", content: "Privacy Policy", key: "privacy" },
+      { as: "a", content: "Terms of Service", key: "terms" }
+    ]
   }
 }
 
@@ -20,7 +24,10 @@ export default function visualReducer(visualState = visualStateDefault, action){
           	{ as: "a", content: "Spotlight", key: "spotlight" },
           ],
           right: [
-          	{ as: "a", icon: "setting", key: "setting" },
+            { as: "a", content: "Account Settings", key: "account" },
+            { as: "a", content: "Contact", key: "contact" },
+            { as: "a", content: "Privacy Policy", key: "privacy" },
+            { as: "a", content: "Terms of Service", key: "terms" }
           ]
         }
       }
