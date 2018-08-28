@@ -106,20 +106,6 @@ const NavBarChildren = ({ children }) => (
   <Container style={{ marginTop: "7vh" }}>{children}</Container>
 );
 
-const Footer = (props) => (
-	<Menu fixed="bottom" inverted style={{...style, height: "3vh", fontSize: "1.5vh"}}>
-			<Menu.Item as="a">
-				Privacy Policy
-			</Menu.Item>
-			<Menu.Item as="a">
-				Terms of Service
-			</Menu.Item>
-			<Menu.Item as="a">
-				Contact
-			</Menu.Item>
-	</Menu>
-)
-
 class NavBar extends React.Component {
   state = {
     leftVisible: false,

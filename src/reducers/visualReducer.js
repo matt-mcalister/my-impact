@@ -5,6 +5,8 @@ const visualStateDefault = {
   navBar: {
     left: [],
     right: [
+      { as: "a", content: "Sign Up", key: "signup" },
+      { as: "a", content: "Log In", key: "login" },
       { as: "a", content: "Contact", key: "contact" },
       { as: "a", content: "Privacy Policy", key: "privacy" },
       { as: "a", content: "Terms of Service", key: "terms" }
@@ -25,6 +27,7 @@ export default function visualReducer(visualState = visualStateDefault, action){
           ],
           right: [
             { as: "a", content: "Account Settings", key: "account" },
+            { as: "a", content: "Sign Out", key: "signout" },
             { as: "a", content: "Contact", key: "contact" },
             { as: "a", content: "Privacy Policy", key: "privacy" },
             { as: "a", content: "Terms of Service", key: "terms" }
