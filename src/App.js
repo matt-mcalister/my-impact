@@ -7,7 +7,6 @@ import NavBar from "./NavBar"
 import { Route } from "react-router-dom"
 
 import { connect } from 'react-redux'
-import { changeExampleMessage } from './actions'
 
 import LogIn from "./components/LogIn"
 import Landing from "./components/Landing"

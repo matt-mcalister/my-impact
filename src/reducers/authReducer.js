@@ -1,4 +1,3 @@
-import { SET_PARTICIPANT } from '../actions/types'
 
 
 const authStateDefault = {
@@ -12,6 +11,7 @@ const authStateDefault = {
     creatingUserParticipant: false
   }
 }
+
 export default function authReducer( authState = authStateDefault , action ){
   switch (action.type){
     default:

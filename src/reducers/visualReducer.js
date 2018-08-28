@@ -34,7 +34,6 @@ export default function visualReducer(visualState = visualStateDefault, action){
           ]
         }
       }
-      break;
     default:
       return {...visualState}
   }
