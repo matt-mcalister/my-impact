@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux"
+import { redirect, removeParticipant } from "./actions"
 
 import {
   Container,
@@ -69,7 +70,7 @@ const NavBarMobile = ({
   </Sidebar.Pushable>
 );
 
-const NavBarDesktop = ({ leftItems, rightItems, onToggle, rightVisible, onPusherClick, children }) => (
+const NavBarDesktop = ({ leftItems, rightItems, onToggle, rightVisible, onPusherClick, children, redirect }) => (
 	<Sidebar.Pushable>
 		<Sidebar
 			as={Menu}
@@ -89,7 +90,7 @@ const NavBarDesktop = ({ leftItems, rightItems, onToggle, rightVisible, onPusher
 			style={{ minHeight: "100vh" }}
 		>
 			<Menu fixed="top" inverted style={style}>
-		    <Menu.Item>
+		    <Menu.Item as="a" onClick={() => redirect("/")}>
 		      <Image size="small" src="/images/impact_official_white_large.png" />
 		    </Menu.Item>
 		    {leftItems.map(item => <Menu.Item {...item} />)}
@@ -127,32 +128,49 @@ class NavBar extends React.Component {
 		}
 	}
 
+  handleMenuItemClick = (item) => {
+    this.handlePusher()
+    if (item.route === "/signout") {
+      this.props.removeParticipant()
+      this.props.redirect("/")
+    } else {
+      this.props.redirect(item.route)
+    }
+  }
+
+  formatItems(items) {
+    return items.map(item => ({...item, onClick: () => this.handleMenuItemClick(item) }) )
+  }
+
   render() {
-    const { children, leftItems, rightItems } = this.props;
+
+    const { children, leftItems, rightItems, redirect } = this.props;
     const { leftVisible, rightVisible } = this.state;
 
     return (
       <div>
         <Responsive {...Responsive.onlyMobile}>
           <NavBarMobile
-            leftItems={leftItems}
+            leftItems={this.formatItems(leftItems)}
             onPusherClick={this.handlePusher}
             onToggle={this.handleToggle}
-            rightItems={rightItems}
+            rightItems={this.formatItems(rightItems)}
             leftVisible={leftVisible}
 						rightVisible={rightVisible}
+            redirect={redirect}
           >
             <NavBarChildren>{children}</NavBarChildren>
           </NavBarMobile>
         </Responsive>
         <Responsive minWidth={Responsive.onlyTablet.minWidth}>
           <NavBarDesktop
-						leftItems={leftItems}
+						leftItems={this.formatItems(leftItems)}
             onPusherClick={this.handlePusher}
             onToggle={this.handleToggle}
-            rightItems={rightItems}
+            rightItems={this.formatItems(rightItems)}
             leftVisible={leftVisible}
 						rightVisible={rightVisible}
+            redirect={redirect}
 					>
 	          <NavBarChildren>{children}</NavBarChildren>
 					</NavBarDesktop>
@@ -169,4 +187,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(NavBar)
+export default connect(mapStateToProps, { redirect, removeParticipant })(NavBar)

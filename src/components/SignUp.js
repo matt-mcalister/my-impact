@@ -1,5 +1,6 @@
 import React from "react"
 import { setParticipant } from "../actions"
+import { connect } from "react-redux"
 
 class SignUp extends React.Component {
 

@@ -4,11 +4,14 @@ import 'semantic-ui-css/semantic.min.css';
 import './index.css';
 import App from './App';
 
-import { BrowserRouter as Router } from 'react-router-dom';
+// import { BrowserRouter as Router } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router'
+
+
 
 import { Provider } from 'react-redux'
 
-import configureStore from './store/configureStore'
+import { configureStore, history } from './store/configureStore'
 
 
 const store = configureStore()
@@ -16,7 +19,7 @@ const store = configureStore()
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
+    <ConnectedRouter history={history}>
       <App />
-    </Router>
+    </ConnectedRouter>
   </Provider>, document.getElementById('root'));
