@@ -4,3 +4,65 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+#capitalImgContainer {
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  top:6vh;
+  overflow: hidden;
+  /* width: 100vw; */
+  height: 100%;
+  background-color: #2f649c;
+}
+
+#capitalImg {
+  height: 100vh;
+  min-height: 96vh;
+  /* min-width: 101vw; */
+}
+
+#aboutVideo {
+  margin-top: 5vh;
+  width: 45vw;
+  height: 25.31vw;
+}
+
+#landing {
+  /* width: 100vw; */
+  height: 100%;
+  margin-right: 3vh;
+  margin-left: auto;
+  text-align: right;
+}
+
+.landing-text {
+  color: white
+}
+
+#desktop-about {
+  width: 45vw!important;
+  text-align: right;
+  margin-left: auto!important;
+  max-width: 45vw;
+  min-width: 20vw;
+  overflow-y: scroll;
+  text-align: right;
+}
+
+.ui.container {
+  margin-left: 0!important;
+  margin-right: 0!important;
+}
+
+::-webkit-scrollbar {
+  background: rgba(0,0,0,0);
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(0,0,0,0);
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0)!important;
+}

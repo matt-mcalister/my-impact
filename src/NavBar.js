@@ -12,7 +12,7 @@ import {
 } from "semantic-ui-react";
 
 const style = {
-	backgroundColor: "#2b5b87",
+	backgroundColor: "#2f649c",
 	height: "7vh"
 }
 
@@ -58,11 +58,11 @@ const NavBarMobile = ({
         <Menu.Item>
           <Image size="small" src="/images/impact_official_white_large.png" />
         </Menu.Item>
-        {<Menu.Item onClick={() => onToggle("left")}>
+        {leftItems[0] && <Menu.Item onClick={() => onToggle("left")}>
           <Icon name="sidebar" />
         </Menu.Item>}
         <Menu.Menu position="right">
-          <Menu.Item as="a" icon="setting" onClick={() => onToggle("right")} />
+          <Menu.Item as="a" icon="ellipsis horizontal" onClick={() => onToggle("right")} />
         </Menu.Menu>
       </Menu>
       {children}
@@ -95,7 +95,7 @@ const NavBarDesktop = ({ leftItems, rightItems, onToggle, rightVisible, onPusher
 		    </Menu.Item>
 		    {leftItems.map(item => <Menu.Item {...item} />)}
 		    <Menu.Menu position="right">
-					<Menu.Item as="a" icon="setting" onClick={() => onToggle("right")} />
+					<Menu.Item as="a" icon="ellipsis horizontal" onClick={() => onToggle("right")} />
 		    </Menu.Menu>
 		  </Menu>
 			{children}
@@ -143,7 +143,6 @@ class NavBar extends React.Component {
   }
 
   render() {
-
     const { children, leftItems, rightItems, redirect } = this.props;
     const { leftVisible, rightVisible } = this.state;
 
