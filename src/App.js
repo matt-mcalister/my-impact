@@ -40,6 +40,12 @@ class App extends Component {
             return (<div>Whoops!</div>)
           }} />
         </Switch>
+          <div id="capitalImgContainer" style={{
+            position: "absolute",
+            left: "0",
+          }}>
+          <img id="capitalImg" src="/images/onboarding-extra-wide.png" alt="The US Capitol"/>
+        </div>
       </NavBar>
     );
   }
