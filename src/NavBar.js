@@ -23,7 +23,8 @@ const NavBarMobile = ({
   leftVisible,
   rightVisible,
 	leftItems,
-	rightItems
+	rightItems,
+  redirect
 }) => (
   <Sidebar.Pushable>
     <Sidebar
@@ -55,7 +56,7 @@ const NavBarMobile = ({
       style={{ minHeight: "100vh" }}
     >
       <Menu fixed="top" inverted style={style}>
-        <Menu.Item>
+        <Menu.Item as="a" onClick={() => redirect("/")}>
           <Image size="small" src="/images/impact_official_white_large.png" />
         </Menu.Item>
         {leftItems[0] && <Menu.Item onClick={() => onToggle("left")}>
