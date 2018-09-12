@@ -87,12 +87,10 @@ class Landing extends React.Component {
 
   render() {
       const capitolWidth = (this.state.innerHeight * 73/100)
-      console.log("WIDTH: ", this.state.innerWidth);
 
       if (this.state.innerWidth > capitolWidth + 300) {
         return <LandingDesktop capitolWidth={capitolWidth} {...this.state} />
       } else {
-        console.log("mobile");
         return <LandingMobile capitolWidth={capitolWidth} {...this.state} />
       }
   }
