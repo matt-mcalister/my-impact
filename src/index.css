@@ -19,7 +19,6 @@ body {
 #capitolImg {
   height: 100vh;
   min-height: 96vh;
-  /* min-width: 101vw; */
 }
 
 .capitol-flex {
@@ -37,16 +36,12 @@ body {
   height: 90vh;
 }
 
-.side-capitol {
-  /* min-width: 300px; */
-}
+
 
 #aboutVideo {
   margin-top: 5vh;
   height: 40vh;
   width: 90%;
-  /* width: 45vw; */
-  /* height: 25.31vw; */
 }
 
 #landing {
@@ -92,16 +87,4 @@ body {
 .ui.container {
   margin-left: 0!important;
   margin-right: 0!important;
-}
-
-::-webkit-scrollbar {
-  background: rgba(0,0,0,0);
-}
-
-::-webkit-scrollbar-corner {
-  background: rgba(0,0,0,0);
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0,0,0,0)!important;
 }
