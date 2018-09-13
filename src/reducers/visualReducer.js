@@ -1,5 +1,3 @@
-import React from "react"
-
 import { SET_PARTICIPANT, REMOVE_PARTICIPANT } from '../actions/types'
 
 import Contact from "../components/Contact"

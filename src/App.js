@@ -11,7 +11,6 @@ import { connect } from 'react-redux'
 import LogIn from "./components/LogIn"
 import SignUp from "./components/SignUp"
 import AccountSettings from "./components/AccountSettings"
-import Contact from "./components/Contact"
 import EventsPage from "./components/EventsPage"
 import Home from "./components/Home"
 import Landing from "./components/Landing"
@@ -29,7 +28,6 @@ class App extends Component {
           <Route exact path="/login" render={() => (<LogIn />)}/>
           <Route exact path="/signup" render={() => (<SignUp />)}/>
           <Route exact path="/settings" render={() => (<AccountSettings />)}/>
-          {/* <Route exact path="/contact" render={() => (<Contact />)}/> */}
           <Route exact path="/events" render={() => (<EventsPage />)}/>
           <Route exact path="/home" render={() => (<Home />)}/>
           <Route exact path="/privacy" render={() => (<Privacy />)}/>

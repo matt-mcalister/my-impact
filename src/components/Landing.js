@@ -1,5 +1,5 @@
 import React from "react"
-import { Responsive, Grid, Container, Button } from 'semantic-ui-react'
+import { Container, Button } from 'semantic-ui-react'
 
 const buttonStyle = {
   backgroundColor: "#2f649c",

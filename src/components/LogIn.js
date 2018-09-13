@@ -1,18 +1,38 @@
 import React from "react"
-import { setParticipant } from "../actions"
+import { setParticipant, redirect } from "../actions"
 import { connect } from 'react-redux'
 
 class LogIn extends React.Component {
 
+	state = {
+		email: "",
+		password: ""
+	}
+
+	handleChange = (e) => {
+		this.setState({
+			[e.target.name]: e.target.value
+		})
+	}
+
+	handleSubmit = (e) => {
+		e.preventDefault()
+		console.log(this.state);
+	}
+
 
 	render(){
 		return (
-      <div>
-        Loggin In
-	      <button onClick={this.props.setParticipant}> login </button>
-      </div>
+			<div className="auth-form">
+				<form onSubmit={this.handleSubmit}>
+					<input type="text" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email"/>
+					<input type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password"/>
+					<input type="submit" value="Login" />
+					<button type="button" onClick={() => this.props.redirect("/signup")} >Sign Up</button>
+				</form>
+			</div>
       )
 	}
 }
 
-export default connect(null, { setParticipant })(LogIn)
+export default connect(null, { setParticipant, redirect })(LogIn)
