@@ -1,5 +1,7 @@
 import React from "react"
 import { Container, Button } from 'semantic-ui-react'
+import { connect } from "react-redux"
+import { redirect } from "../actions"
 
 const buttonStyle = {
   backgroundColor: "#2f649c",
@@ -7,6 +9,17 @@ const buttonStyle = {
   width: "60%",
   marginBottom: "5px"
 }
+
+const Buttons = (props) => {
+  return (
+    <React.Fragment>
+      <Button style={buttonStyle} onClick={() => props.redirect("/login")}>Log In</Button>
+      <Button style={buttonStyle} onClick={() => props.redirect("/signup")}>Sign Up</Button>
+    </React.Fragment>
+  )
+}
+
+const AuthButtons = connect(null, { redirect })(Buttons)
 
 const LandingMobile = (props) => {
 
@@ -22,8 +35,7 @@ const LandingMobile = (props) => {
       <div className="over-capitol" style={{width: props.innerWidth, height: "80vh"}}>
         <iframe title="ImPACT Video" id="aboutVideo" src="https://player.vimeo.com/video/278060639" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen="true"></iframe>
         <div id="login-download">
-          <Button style={buttonStyle}>Login</Button>
-          <Button style={buttonStyle}>Sign Up</Button>
+          {<AuthButtons />}
           <a id="itunes-link" href="https://itunes.apple.com/us/app/my-impact/id1397266194?mt=8"><img id="appStore" src="https://get.google.com/apptips/images/app-store.svg" alt="Download on the App Store"/></a>
         </div>
       </div>
@@ -50,8 +62,7 @@ const LandingDesktop = (props) => {
         <div className="over-capitol" style={{width: props.capitolWidth}}>
           <iframe title="ImPACT Video" id="aboutVideo" src="https://player.vimeo.com/video/278060639" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen="true"></iframe>
           <div id="login-download">
-            <Button style={buttonStyle}>Login</Button>
-            <Button style={buttonStyle}>Sign Up</Button>
+            {<AuthButtons />}
             <a id="itunes-link" href="https://itunes.apple.com/us/app/my-impact/id1397266194?mt=8"><img id="appStore" src="https://get.google.com/apptips/images/app-store.svg" alt="Download on the App Store"/></a>
           </div>
         </div>
