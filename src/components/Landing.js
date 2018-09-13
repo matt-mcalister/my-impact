@@ -19,7 +19,7 @@ const LandingMobile = (props) => {
 
   return (
     <div id="landing" className="capitol-flex" style={{flexDirection: "column", alignItems: "center"}}>
-      <div className="over-capitol" style={{width: props.capitolWidth, height: "80vh"}}>
+      <div className="over-capitol" style={{width: props.innerWidth, height: "80vh"}}>
         <iframe title="ImPACT Video" id="aboutVideo" src="https://player.vimeo.com/video/278060639" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen="true"></iframe>
         <div id="login-download">
           <Button style={buttonStyle}>Login</Button>

@@ -24,13 +24,16 @@ class SignUp extends React.Component {
 
 	render(){
 		return (
-      <form onSubmit={this.handleSubmit} className="auth-form">
-        <input type="text" name="name" value={this.state.name} onChange={this.handleChange} placeholder="Name"/>
-        <input type="text" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email"/>
-        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password"/>
-				<input type="submit" value="Sign Up" />
-				<button type="button" onClick={() => this.props.redirect("/login")} >Log In</button>
-      </form>
+			<div className="auth-form">
+				<h1>Sign Up</h1>
+				<form onSubmit={this.handleSubmit}>
+					<input type="text" name="name" value={this.state.name} onChange={this.handleChange} placeholder="Name"/>
+	        <input type="text" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email"/>
+	        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password"/>
+					<input className="auth-submit" type="submit" value="Go" />
+					<button type="button" onClick={() => this.props.redirect("/login")} >Log In</button>
+				</form>
+			</div>
       )
 	}
 }

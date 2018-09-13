@@ -24,10 +24,11 @@ class LogIn extends React.Component {
 	render(){
 		return (
 			<div className="auth-form">
+				<h1>Log In</h1>
 				<form onSubmit={this.handleSubmit}>
 					<input type="text" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email"/>
 					<input type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password"/>
-					<input type="submit" value="Login" />
+					<input className="auth-submit" type="submit" value="Go" />
 					<button type="button" onClick={() => this.props.redirect("/signup")} >Sign Up</button>
 				</form>
 			</div>
