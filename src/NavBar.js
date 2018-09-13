@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux"
-import { redirect, removeParticipant } from "./actions"
+import { redirect } from "./actions"
+import { auth } from "./firebase"
 
 import {
   Container,
@@ -132,7 +133,7 @@ class NavBar extends React.Component {
   handleMenuItemClick = (item) => {
     this.handlePusher()
     if (item.route === "/signout") {
-      this.props.removeParticipant()
+      auth.doSignOut()
       this.props.redirect("/")
     } else {
       this.props.redirect(item.route)
@@ -187,4 +188,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, { redirect, removeParticipant })(NavBar)
+export default connect(mapStateToProps, { redirect })(NavBar)

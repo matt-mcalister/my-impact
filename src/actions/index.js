@@ -1,15 +1,32 @@
-import { SET_PARTICIPANT, REMOVE_PARTICIPANT } from './types'
+import * as actions from './types'
 import { push } from 'connected-react-router'
 
+export const setAuthUser = (uid) => {
+  return (dispatch) => {
+    dispatch({
+      type: actions.SET_AUTH_USER,
+      payload: uid
+    })
+    dispatch(push("/home"))
+  }
+
+}
+
+export const removeAuthUser = () => {
+  console.log("yo", actions.REMOVE_AUTH_USER);
+  return {
+    type: actions.REMOVE_AUTH_USER
+  }
+}
 
 export const setParticipant = () => {
   return {
-    type: SET_PARTICIPANT
+    type: actions.SET_PARTICIPANT
   }
 }
 export const removeParticipant = () => {
   return {
-    type: REMOVE_PARTICIPANT
+    type: actions.REMOVE_PARTICIPANT
   }
 }
 

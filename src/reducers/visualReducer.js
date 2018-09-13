@@ -1,4 +1,4 @@
-import { SET_PARTICIPANT, REMOVE_PARTICIPANT } from '../actions/types'
+import * as actions from '../actions/types'
 
 import Contact from "../components/Contact"
 
@@ -18,7 +18,7 @@ const visualStateDefault = {
 
 export default function visualReducer(visualState = visualStateDefault, action){
   switch (action.type) {
-    case (SET_PARTICIPANT):
+    case (actions.SET_AUTH_USER):
       return {
         ...visualState,
         navBar: {
@@ -36,8 +36,9 @@ export default function visualReducer(visualState = visualStateDefault, action){
           ]
         }
       };
-    case (REMOVE_PARTICIPANT):
-      return {...visualStateDefault};
+    case (actions.REMOVE_AUTH_USER):
+      console.log("removing");
+      return { ...visualStateDefault };
     default:
       return {...visualState}
   }

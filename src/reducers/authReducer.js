@@ -1,7 +1,7 @@
-
+import * as actions from "../actions/types"
 
 const authStateDefault = {
-  id: null,
+  uid: null,
   participant: null,
   newUserInfo: {
     name: '',
@@ -14,6 +14,13 @@ const authStateDefault = {
 
 export default function authReducer( authState = authStateDefault , action ){
   switch (action.type){
+    case actions.SET_AUTH_USER :
+      return {
+        ...authState,
+        uid: action.payload
+      }
+    case actions.REMOVE_AUTH_USER :
+      return { ...authStateDefault }
     default:
       return { ...authState }
   }

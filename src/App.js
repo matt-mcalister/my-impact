@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import { removeParticipant } from './actions'
+import { removeAuthUser, setAuthUser } from './actions'
+
+import { firebase } from './firebase';
 
 import NavBar from "./NavBar"
 
@@ -20,8 +22,22 @@ import Terms from "./components/Terms"
 
 class App extends Component {
 
+  componentDidMount() {
+    firebase.auth.onAuthStateChanged(this.handleAuthStateChanged)
+  }
+
+  handleAuthStateChanged = (authUser) => {
+    console.log("auth state changed: ", authUser);
+    if (authUser) {
+      this.props.setAuthUser(authUser.uid)
+    } else {
+      this.props.removeAuthUser()
+    }
+  }
+
 
   render() {
+    console.log(this.props);
     return (
       <NavBar>
         <Switch>
@@ -49,4 +65,4 @@ class App extends Component {
   }
 }
 
-export default connect((state) => ({...state}),{ removeParticipant })(App);
+export default connect((state) => ({...state}),{ removeAuthUser, setAuthUser })(App);

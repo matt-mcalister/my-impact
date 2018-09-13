@@ -1,6 +1,8 @@
 import React from "react"
 import { setParticipant, redirect } from "../actions"
 import { connect } from 'react-redux'
+import { auth } from '../firebase';
+
 
 class LogIn extends React.Component {
 
@@ -17,7 +19,7 @@ class LogIn extends React.Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault()
-		console.log(this.state);
+		auth.doSignInWithEmailAndPassword(this.state.email, this.state.password)
 	}
 
 
