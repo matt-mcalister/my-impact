@@ -14,6 +14,7 @@ export const setAuthUser = (uid) => {
           type: actions.SET_PARTICIPANT,
           payload: doc.data()
         })
+        dispatch(push("/home"))
       } else {
         dispatch(push("/avatar"))
       }

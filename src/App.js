@@ -36,7 +36,6 @@ class App extends Component {
 
 
   render() {
-    console.log(this.props.auth.participant);
     return (
       <NavBar>
         <Switch>
@@ -53,15 +52,15 @@ class App extends Component {
             return (<div>Whoops!</div>)
           }} />
         </Switch>
-          <div id="capitolImgContainer" style={{
+          {this.props.showCapitol && (<div id="capitolImgContainer" style={{
             position: "absolute",
             left: "0",
           }}>
           <img id="capitolImg" src="/images/onboarding-extra-wide.png" alt="The US Capitol"/>
-        </div>
+        </div>)}
       </NavBar>
     );
   }
 }
 
-export default connect((state) => ({...state}),{ removeAuthUser, setAuthUser })(App);
+export default connect((state) => ({ showCapitol: state.visual.showCapitol, router: state.router }),{ removeAuthUser, setAuthUser })(App);

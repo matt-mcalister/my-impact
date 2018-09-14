@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #e4f4ff
 }
 
 #capitolImgContainer {
@@ -74,6 +75,7 @@ body {
   background-color: white;
   width: 100vw;
   height: 100%;
+  z-index: 10000000;
 }
 
 .legal h1 {

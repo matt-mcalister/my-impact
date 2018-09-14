@@ -4,6 +4,7 @@ import Contact from "../components/Contact"
 
 const visualStateDefault = {
   loading: false,
+  showCapitol: true,
   navBar: {
     left: [],
     right: [
@@ -21,6 +22,7 @@ export default function visualReducer(visualState = visualStateDefault, action){
     case (actions.SET_AUTH_USER):
       return {
         ...visualState,
+        showCapitol: false,
         navBar: {
           left: [
           	{ as: "a", content: "Home", key: "home", route: "/home" },
