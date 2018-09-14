@@ -1,19 +1,29 @@
 import * as actions from './types'
 import { push } from 'connected-react-router'
+import { firebase } from '../firebase'
 
 export const setAuthUser = (uid) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch({
       type: actions.SET_AUTH_USER,
       payload: uid
     })
-    dispatch(push("/home"))
+    firebase.db.collection('participant').doc(uid).get().then( doc => {
+      if (doc.data()) {
+        dispatch({
+          type: actions.SET_PARTICIPANT,
+          payload: doc.data()
+        })
+      } else {
+        dispatch(push("/avatar"))
+      }
+    })
+    // dispatch(push("/home"))
   }
 
 }
 
 export const removeAuthUser = () => {
-  console.log("yo", actions.REMOVE_AUTH_USER);
   return {
     type: actions.REMOVE_AUTH_USER
   }

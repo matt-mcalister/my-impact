@@ -27,7 +27,6 @@ class App extends Component {
   }
 
   handleAuthStateChanged = (authUser) => {
-    console.log("auth state changed: ", authUser);
     if (authUser) {
       this.props.setAuthUser(authUser.uid)
     } else {
@@ -37,7 +36,7 @@ class App extends Component {
 
 
   render() {
-    console.log(this.props);
+    console.log(this.props.auth.participant);
     return (
       <NavBar>
         <Switch>

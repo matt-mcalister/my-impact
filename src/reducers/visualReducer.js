@@ -37,7 +37,6 @@ export default function visualReducer(visualState = visualStateDefault, action){
         }
       };
     case (actions.REMOVE_AUTH_USER):
-      console.log("removing");
       return { ...visualStateDefault };
     default:
       return {...visualState}
