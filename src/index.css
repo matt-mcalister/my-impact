@@ -171,92 +171,46 @@ body {
   margin-right: 5%;
 }
 
-#full-progress-bar {
+/*  fourth try */
+#progress-bar-container {
   max-width:90%;
   width: 90%;
+  background-color: grey;
   margin-left: 5%;
   margin-right: 5%;
   height: 40%;
-  display: flex;
+  display:grid;
+  border-radius: 50px;
+  overflow:hidden;
 }
 
-#begin-cap {
-  border-top-left-radius: 100%;
-  border-bottom-left-radius: 100%;
+#progress-so-far {
   background-color:green;
-}
-
-#goal {
-  border-top-right-radius: 100%;
-  border-bottom-right-radius: 100%;
   display: flex;
-  align-items: center;
   justify-content: flex-end;
-  padding-right: 5%;
-  color:white;
-  position:relative;
-  left: -12vh;
-}
-.progress-bar-cap {
-  height: 100%;
-  min-width: 40px;
-  min-width: 12vh;
-  width: 12vh;
-  background-color: grey;
+  border-radius:50px;
 }
 
-#rect-progress-bar {
-  width: 100%;
-  height: 100%;
-  background-color: grey;
-  position: relative;
-  display: flex;
-  left: -6vh;
-}
-
-
-#progress-completed {
-  background-color: green;
-  height: 100%;
-}
-
-#progress-hours {
-  height: 100%;
-  min-width: 40px;
-  min-width: 12vh;
-  width: 12vh;
-  border: white 2px solid;
-  border-radius: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#progress-label-circle {
   background-color: green;
   color: white;
-  position: relative;
-  left: -6vh;
-}
-
-
-/*  third try */
-.bar {
-  margin-left: 5%;
-  margin-right: 5%;
-  height: 40%;
-  border-radius: 50px;
+  min-width:40px;
+  width: 12vh;
+  height:100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   -ms-align-items: center;
   align-items: center;
-  padding-right:25px;
-  color:white;
+  border:1px solid white;
+  border-radius:100%;
 }
-#background-progress-bar {
-  max-width:90%;
-  width: 90%;
+
+#progress-remainder {
   background-color: grey;
-}
-#progress-completed-layer {
-  background-color: green;
-  position:relative;
-  top:-39%
+  height:100%;
+  color: white;
+  display:flex;
+  -ms-align-items: center;
+  align-items: center;
+  justify-content: center;
 }
