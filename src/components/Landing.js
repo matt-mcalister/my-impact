@@ -33,7 +33,7 @@ const LandingMobile = (props) => {
   return (
     <div id="landing" className="capitol-flex" style={{flexDirection: "column", alignItems: "center"}}>
       <div className="over-capitol" style={{width: props.innerWidth, height: "80vh"}}>
-        <iframe title="ImPACT Video" id="aboutVideo" src="https://player.vimeo.com/video/278060639" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen="true"></iframe>
+        <iframe title="ImPACT Video" id="aboutVideo" src="https://player.vimeo.com/video/278060639" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen={true}></iframe>
         <div id="login-download">
           {<AuthButtons />}
           <a id="itunes-link" href="https://itunes.apple.com/us/app/my-impact/id1397266194?mt=8"><img id="appStore" src="https://get.google.com/apptips/images/app-store.svg" alt="Download on the App Store"/></a>
@@ -60,7 +60,7 @@ const LandingDesktop = (props) => {
     return (
       <div id="landing" className="capitol-flex">
         <div className="over-capitol" style={{width: props.capitolWidth}}>
-          <iframe title="ImPACT Video" id="aboutVideo" src="https://player.vimeo.com/video/278060639" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen="true"></iframe>
+          <iframe title="ImPACT Video" id="aboutVideo" src="https://player.vimeo.com/video/278060639" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen={true}></iframe>
           <div id="login-download">
             {<AuthButtons />}
             <a id="itunes-link" href="https://itunes.apple.com/us/app/my-impact/id1397266194?mt=8"><img id="appStore" src="https://get.google.com/apptips/images/app-store.svg" alt="Download on the App Store"/></a>

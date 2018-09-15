@@ -37,8 +37,6 @@ body {
   height: 90vh;
 }
 
-
-
 #aboutVideo {
   margin-top: 5vh;
   height: 40vh;
@@ -123,8 +121,6 @@ body {
   position: absolute;
   top: -1vw;
   left: -1vw;
-  /* bottom: 0;
-  right: 0; */
   background: inherit;
   box-shadow: inset 0 0 0 50vh rgba(255,255,255,0.5);
   filter: blur(10px);
@@ -137,7 +133,6 @@ body {
   flex-direction: column;
   align-items: center;
   width: 60%;
-  /* border: 1px solid red; */
 }
 
 .auth-form input {
@@ -158,6 +153,7 @@ body {
   border: 0px
 }
 
+/* second try */
 #progress-container {
   min-width: 250px;
   width: 50vw;
@@ -176,30 +172,52 @@ body {
 }
 
 #full-progress-bar {
+  max-width:90%;
   width: 90%;
   margin-left: 5%;
   margin-right: 5%;
   height: 40%;
-  background-color: grey;
-  border-radius: 50px;
-  overflow:hidden;
-  display: inline;
+  display: flex;
 }
 
-#full-progress-bar > p  {
-  height: 100%;
+#begin-cap {
+  border-top-left-radius: 100%;
+  border-bottom-left-radius: 100%;
+  background-color:green;
+}
+
+#goal {
+  border-top-right-radius: 100%;
+  border-bottom-right-radius: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   padding-right: 5%;
   color:white;
+  position:relative;
+  left: -12vh;
 }
+.progress-bar-cap {
+  height: 100%;
+  min-width: 40px;
+  min-width: 12vh;
+  width: 12vh;
+  background-color: grey;
+}
+
+#rect-progress-bar {
+  width: 100%;
+  height: 100%;
+  background-color: grey;
+  position: relative;
+  display: flex;
+  left: -6vh;
+}
+
 
 #progress-completed {
   background-color: green;
   height: 100%;
-  display: flex;
-  align-items: flex-end;
 }
 
 #progress-hours {
@@ -214,4 +232,31 @@ body {
   justify-content: center;
   background-color: green;
   color: white;
+  position: relative;
+  left: -6vh;
+}
+
+
+/*  third try */
+.bar {
+  margin-left: 5%;
+  margin-right: 5%;
+  height: 40%;
+  border-radius: 50px;
+  display: flex;
+  justify-content: flex-end;
+  -ms-align-items: center;
+  align-items: center;
+  padding-right:25px;
+  color:white;
+}
+#background-progress-bar {
+  max-width:90%;
+  width: 90%;
+  background-color: grey;
+}
+#progress-completed-layer {
+  background-color: green;
+  position:relative;
+  top:-39%
 }
