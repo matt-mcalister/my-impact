@@ -1,4 +1,5 @@
 import React from "react"
+import ProgressBar from "./ProgressBar"
 
 class Home extends React.Component {
 
@@ -7,6 +8,7 @@ class Home extends React.Component {
 		return (
       <div>
         We home now
+				<ProgressBar />
       </div>
       )
 	}

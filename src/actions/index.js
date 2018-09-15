@@ -15,11 +15,19 @@ export const setAuthUser = (uid) => {
           payload: doc.data()
         })
         dispatch(push("/home"))
+        firebase.db.collection('participant').doc(uid).collection('entries').get().then( payload => {
+          if (payload.docs && payload.docs.length > 0){
+            const logs = [...payload.docs].map(doc => doc.data() )
+            dispatch({
+              type: actions.SET_LOGS,
+              payload: logs
+            })
+          }
+        })
       } else {
         dispatch(push("/avatar"))
       }
     })
-    // dispatch(push("/home"))
   }
 
 }
