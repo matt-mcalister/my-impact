@@ -153,7 +153,6 @@ body {
   border: 0px
 }
 
-/* second try */
 #progress-container {
   min-width: 250px;
   width: 50vw;
@@ -171,7 +170,6 @@ body {
   margin-right: 5%;
 }
 
-/*  fourth try */
 #progress-bar-container {
   max-width:90%;
   width: 90%;

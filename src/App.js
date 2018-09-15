@@ -6,7 +6,7 @@ import { firebase } from './firebase';
 
 import NavBar from "./NavBar"
 
-import { Route, Switch } from "react-router-dom"
+import { Route, Switch, Redirect } from "react-router-dom"
 
 import { connect } from 'react-redux'
 
@@ -39,15 +39,57 @@ class App extends Component {
     return (
       <NavBar>
         <Switch>
-          <Route exact path="/login" render={() => (<LogIn />)}/>
-          <Route exact path="/signup" render={() => (<SignUp />)}/>
-          <Route exact path="/settings" render={() => (<AccountSettings />)}/>
-          <Route exact path="/events" render={() => (<EventsPage />)}/>
-          <Route exact path="/home" render={() => (<Home />)}/>
+          <Route exact path="/login" render={() => {
+              if (!this.props.participant) {
+                return <LogIn />
+              } else {
+                return <Redirect to="/home" />
+              }
+            } }/>
+        <Route exact path="/signup" render={() => {
+            if (!this.props.participant) {
+              return <SignUp />
+            } else {
+                return <Redirect to="/home" />
+            }
+            } }/>
+          <Route exact path="/settings" render={() => {
+              if (this.props.participant) {
+                return (<AccountSettings />)
+              } else {
+                return <Redirect to="/" />
+              }
+            } }/>
+          <Route exact path="/events" render={() => {
+              if (this.props.participant) {
+                return (<EventsPage />)
+              } else {
+                return <Redirect to="/" />
+              }
+            } }/>
+          <Route exact path="/home" render={() => {
+              if (this.props.participant) {
+                return (<Home />)
+              } else {
+                return <Redirect to="/" />
+              }
+            } }/>
           <Route exact path="/privacy" render={() => (<Privacy />)}/>
-          <Route exact path="/spotlight" render={() => (<Spotlight />)}/>
+          <Route exact path="/spotlight" render={() => {
+              if (this.props.participant) {
+                return (<Spotlight />)
+              } else {
+                return <Redirect to="/" />
+              }
+            } }/>
           <Route exact path="/terms" render={() => (<Terms />)}/>
-          <Route exact path="/" render={() => (<Landing />)}/>
+        <Route exact path="/" render={() => {
+            if (!this.props.participant) {
+              return <Landing />
+            } else {
+                return <Redirect to="/home" />
+            }
+      } }/>
           <Route exact path="/:catch" render={() => {
             return (<div>Whoops!</div>)
           }} />
@@ -63,4 +105,4 @@ class App extends Component {
   }
 }
 
-export default connect((state) => ({ showCapitol: state.visual.showCapitol, router: state.router }),{ removeAuthUser, setAuthUser })(App);
+export default connect((state) => ({ participant: state.auth.participant, showCapitol: state.visual.showCapitol, router: state.router }),{ removeAuthUser, setAuthUser })(App);

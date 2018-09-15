@@ -1,5 +1,6 @@
 import React from "react"
 import ProgressBar from "./ProgressBar"
+import { withParticipant } from "../hoc"
 
 class Home extends React.Component {
 
@@ -14,4 +15,4 @@ class Home extends React.Component {
 	}
 }
 
-export default Home
+export default withParticipant(Home)
