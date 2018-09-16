@@ -4,6 +4,9 @@ import Log from "./Log"
 // add message if there are no logs
 // sort by date (oldest to newest)
 const Logs = (props) => {
+  if (props.logs.length > 1) {
+    debugger
+  }
   return (
     <div className="home-wrapper">
 			<h3>LOGS</h3>

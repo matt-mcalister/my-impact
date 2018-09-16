@@ -1,5 +1,11 @@
 import React from "react";
 
+const formatDate = (dateString) => {
+  const monthKey = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  const date = new Date(dateString)
+  return `${monthKey[date.getMonth()]} ${date.getDate()}`
+}
+
 const Log = (props) => {
   console.log(props);
   return (
@@ -13,7 +19,7 @@ const Log = (props) => {
           {props.amountDonated && <li>Donation: ${props.amountDonated}.00</li>}
         </ul>
       </div>
-      <div className="log-date">Jul 25</div>
+      <div className="log-date">{formatDate(props.datePerformed)}</div>
     </div>
   )
 }
