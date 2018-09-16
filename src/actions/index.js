@@ -18,6 +18,13 @@ export const setAuthUser = (uid) => {
         firebase.db.collection('participant').doc(uid).collection('entries').get().then( payload => {
           if (payload.docs && payload.docs.length > 0){
             const logs = [...payload.docs].map(doc => doc.data() )
+            const sortByDate = (a,b) => {
+              const aDate = new Date(a.datePerformed)
+              const bDate = new Date(b.datePerformed)
+              if (bDate > aDate) return 1;
+              if (bDate < aDate) return -1;
+              return 0;
+            }
             dispatch({
               type: actions.SET_LOGS,
               payload: logs
