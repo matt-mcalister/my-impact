@@ -7,7 +7,6 @@ const formatDate = (dateString) => {
 }
 
 const Log = (props) => {
-  console.log(props);
   return (
     <div className="log">
       <div className="log-hours">{props.numHours}</div>
