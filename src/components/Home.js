@@ -1,18 +1,18 @@
 import React from "react"
 import ProgressBar from "./ProgressBar"
-import { withParticipant } from "../hoc"
+import Logs from "./Logs"
 
 class Home extends React.Component {
 
 
 	render(){
 		return (
-      <div>
-        We home now
+      <div className="main-content">
 				<ProgressBar />
+				<Logs />
       </div>
       )
 	}
 }
 
-export default withParticipant(Home)
+export default Home

@@ -9,16 +9,20 @@ const ProgressBar = (props) => {
 			gridTemplateColumns: `minmax(12vh, ${percentage*100}%) auto minmax(5%, 12vh)`
 		}
 		return (
-		<div id="progress-container">
-			<h1>{percentage*100}% complete</h1>
-			<div id="progress-bar-container" style={progressBarCont}>
-				<div id="progress-so-far">
-					<div id="progress-label-circle">{props.hours}h</div>
+		<div className="home-wrapper">
+			<h3>PROGRESS</h3>
+			<div id="progress-container" className="logs-white-round">
+				<h1>{percentage*100}% complete</h1>
+				<div id="progress-bar-container" style={progressBarCont}>
+					<div id="progress-so-far">
+						<div id="progress-label-circle">{props.hours}h</div>
+					</div>
+					<div id="progress-separator" />
+					<div id="progress-remainder">{props.goal}h</div>
 				</div>
-				<div id="progress-separator" />
-				<div id="progress-remainder">{props.goal}h</div>
 			</div>
-		</div>)
+		</div>
+		)
 	} else {
 		return null
 	}
