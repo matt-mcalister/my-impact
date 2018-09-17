@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon, Modal } from 'semantic-ui-react'
+import { AmountDonated } from "./LogAdditions"
 
 class AddLog extends React.Component {
 
@@ -8,7 +9,7 @@ class AddLog extends React.Component {
     datePerformed: new Date(),
     eventTitle: "",
     organizationTitle: "",
-    amountDonated: 0
+    amountDonated: null
   }
 
   handleChange = (e) => {
@@ -26,7 +27,7 @@ class AddLog extends React.Component {
   }
 
   subtractHours = () => {
-    if (this.state.numHours >= 0) {
+    if (this.state.numHours > 0) {
       this.setState(prevState => {
         return {
           numHours: prevState.numHours-0.5
@@ -34,10 +35,15 @@ class AddLog extends React.Component {
       })
     }
   }
+  handleValueSet = (key, value) => {
+    this.setState({
+      [key]: value
+    })
+  }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state);
+    console.log("submitted");
   }
 
   addDate = () => {
@@ -64,8 +70,9 @@ class AddLog extends React.Component {
           <label htmlFor="organizationTitle">Add Organization: </label>
           <input type="text" name="organizationTitle" value={this.state.organizationTitle} onChange={this.handleChange} />
           <br />
-          <label htmlFor="amountDonated">Add Donation: </label>
-          <input type="text" name="amountDonated" value={this.state.amountDonated} onChange={this.handleChange} />
+          <AmountDonated handleValueSet={this.handleValueSet}/>
+          {/* <label htmlFor="amountDonated">Add Donation: </label>
+          <input type="text" name="amountDonated" value={this.state.amountDonated} onChange={this.handleChange} /> */}
         </div>
         <br />
         <input type="submit" value="Create" />
