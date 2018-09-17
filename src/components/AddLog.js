@@ -1,20 +1,27 @@
 import React from "react";
 import { Icon, Modal } from 'semantic-ui-react'
-import { AmountDonated, DatePerformed } from "./LogAdditions"
+import { AmountDonated, DatePerformed, OptionalTextField } from "./LogAdditions"
 
 class AddLog extends React.Component {
 
   state = {
     numHours: 0,
-    datePerformed: new Date(),
-    eventTitle: "",
-    organizationTitle: "",
-    amountDonated: null
+    datePerformed: null,
+    eventTitle: null,
+    organizationTitle: null,
+    amountDonated: null,
+    addingAttribute: false,
   }
 
-  handleChange = (e) => {
+  addAttribute = (attribute) => {
     this.setState({
-      [e.target.name]: e.target.value
+      addingAttribute: attribute,
+    })
+  }
+
+  resetAddAttribute = () => {
+    this.setState({
+      addingAttribute: false,
     })
   }
 
@@ -37,18 +44,16 @@ class AddLog extends React.Component {
   }
   handleValueSet = (key, value) => {
     this.setState({
-      [key]: value
+      [key]: value,
+      addingAttribute: false,
     })
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log("submitted");
+    console.log(this.state);
   }
 
-  addDate = () => {
-
-  }
 
   render() {
     console.log(this.state);
@@ -61,22 +66,16 @@ class AddLog extends React.Component {
           <Icon name="plus circle" onClick={this.addHours} />
         </div>
         <div>
-          {/* <label htmlFor="datePerformed">Date: </label>
-          <input type="text" name="datePerformed" value={this.state.datePerformed} onChange={this.handleChange} /> */}
-          <DatePerformed handleValueSet={this.handleValueSet}/>
+          <DatePerformed addingAttribute={this.state.addingAttribute} addAttribute={this.addAttribute} handleValueSet={this.handleValueSet}/>
           <br />
-          <label htmlFor="eventTitle">Add Event: </label>
-          <input type="text" name="eventTitle" value={this.state.eventTitle} onChange={this.handleChange} />
+          <OptionalTextField resetAddAttribute={this.resetAddAttribute} addingAttribute={this.state.addingAttribute} addAttribute={this.addAttribute} attributeKey="eventTitle" attributeText="Event" handleValueSet={this.handleValueSet}/>
           <br />
-          <label htmlFor="organizationTitle">Add Organization: </label>
-          <input type="text" name="organizationTitle" value={this.state.organizationTitle} onChange={this.handleChange} />
+          <OptionalTextField resetAddAttribute={this.resetAddAttribute} addingAttribute={this.state.addingAttribute} addAttribute={this.addAttribute} attributeKey="organizationTitle" attributeText="Organization" handleValueSet={this.handleValueSet}/>
           <br />
-          <AmountDonated handleValueSet={this.handleValueSet}/>
-          {/* <label htmlFor="amountDonated">Add Donation: </label>
-          <input type="text" name="amountDonated" value={this.state.amountDonated} onChange={this.handleChange} /> */}
+          <AmountDonated resetAddAttribute={this.resetAddAttribute} addingAttribute={this.state.addingAttribute} addAttribute={this.addAttribute} handleValueSet={this.handleValueSet}/>
         </div>
         <br />
-        <input type="submit" value="Create" />
+        <input type="submit" value="Create" disabled={!!this.state.addingAttribute}/>
       </form>
     </Modal>
     )

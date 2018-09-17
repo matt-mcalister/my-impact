@@ -8,16 +8,22 @@ class AmountDonated extends React.Component {
   }
 
   visibleTrue = () => {
-    this.setState({
-      editVisible: true,
-      hasBeenSet: false,
-    })
+    if (!this.props.addingAttribute){
+      this.props.addAttribute("amountDonated")
+      this.setState({
+        editVisible: true,
+        hasBeenSet: false,
+      })
+    }
   }
 
   handleChange = (e) => {
-    this.setState({
-      amountDonated: parseFloat(e.target.value),
-    })
+    const newValue = parseFloat(e.target.value)
+    if (newValue > 0){
+      this.setState({
+        amountDonated: newValue,
+      })
+    }
   }
 
   handleKeyPress = (e) => {
@@ -28,11 +34,28 @@ class AmountDonated extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+    if (this.state.amountDonated > 0){
+      this.setState({
+        editVisible: false,
+        hasBeenSet: true,
+      })
+      this.props.handleValueSet("amountDonated", this.state.amountDonated.toFixed(2))
+    } else {
+      this.setState({
+        editVisible: false,
+        hasBeenSet: false,
+      })
+      this.props.resetAddAttribute()
+    }
+  }
+
+  cancel = (e) => {
     this.setState({
       editVisible: false,
-      hasBeenSet: true,
+      hasBeenSet: false,
+      amountDonated: 0
     })
-    this.props.handleValueSet("amountDonated", this.state.amountDonated.toFixed(2))
+    this.props.handleValueSet("amountDonated", null)
   }
 
 
@@ -45,6 +68,7 @@ class AmountDonated extends React.Component {
         <React.Fragment>
           <input type="number" step="0.01" min="0.00" onKeyPress={this.handleKeyPress} onChange={this.handleChange} defaultValue={this.state.amountDonated.toFixed(2)}/>
           <button type="button" value={this.state.amountDonated.toFixed(2)} onClick={this.handleSubmit}>Add Donation</button>
+          <button type="button" onClick={this.cancel}>Cancel</button>
         </React.Fragment>
         )
     } else {

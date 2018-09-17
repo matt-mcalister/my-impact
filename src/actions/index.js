@@ -27,7 +27,7 @@ export const setAuthUser = (uid) => {
             }
             dispatch({
               type: actions.SET_LOGS,
-              payload: logs
+              payload: logs.sort(sortByDate)
             })
           }
         })

@@ -8,10 +8,13 @@ class DatePerformed extends React.Component {
   }
 
   visibleTrue = () => {
-    this.setState({
-      editVisible: true,
-      hasBeenSet: false,
-    })
+		if (!this.props.addingAttribute){
+	    this.props.addAttribute("datePerformed")
+	    this.setState({
+	      editVisible: true,
+	      hasBeenSet: false,
+	    })
+		}
   }
 
 	isValidDate = (date) => {
@@ -19,7 +22,6 @@ class DatePerformed extends React.Component {
 	}
 
   handleChange = (e) => {
-		console.log(e.target.value);
 		if (this.isValidDate(e.target.value)){
 	    this.setState({
 	      datePerformed: new Date(e.target.value),
@@ -42,6 +44,15 @@ class DatePerformed extends React.Component {
     this.props.handleValueSet("datePerformed", this.state.datePerformed.toISOString(),)
   }
 
+	cancel = (e) => {
+		this.setState({
+			editVisible: false,
+			hasBeenSet: false,
+			datePerformed: new Date()
+		})
+		this.props.handleValueSet("datePerformed", null)
+	}
+
 
 
 	render(){
@@ -51,7 +62,8 @@ class DatePerformed extends React.Component {
       return (
         <React.Fragment>
           <input type="date" onKeyPress={this.handleKeyPress} onChange={this.handleChange} defaultValue={this.state.datePerformed.toISOString().split('T')[0]}/>
-          <button type="button" value={this.state.datePerformed} onClick={this.handleSubmit}>Add Date</button>
+          <button type="button" onClick={this.handleSubmit}>Add Date</button>
+          <button type="button" onClick={this.cancel}>Cancel</button>
         </React.Fragment>
         )
     } else {
