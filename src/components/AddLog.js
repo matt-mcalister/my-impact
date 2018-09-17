@@ -11,6 +11,7 @@ class AddLog extends React.Component {
     organizationTitle: null,
     amountDonated: null,
     addingAttribute: false,
+    open: false,
   }
 
   addAttribute = (attribute) => {
@@ -52,6 +53,7 @@ class AddLog extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     console.log(this.state);
+    this.closeModal()
   }
 
   formatNumber(){
@@ -64,10 +66,22 @@ class AddLog extends React.Component {
     )
   }
 
+  openModal = () => {
+    this.setState({
+      open: true,
+    })
+  }
+
+  closeModal = () => {
+    this.setState({
+      open: false,
+    })
+  }
+
 
   render() {
     return (
-    <Modal id="log-modal" trigger={<Icon id="add-log-button" name="plus circle" size="large"/>} closeIcon>
+    <Modal id="log-modal" onClose={this.closeModal} trigger={<Icon id="add-log-button" onClick={this.openModal} name="plus circle" size="large"/>} open={this.state.open} closeIcon>
       <form id="new-log-form" onSubmit={this.handleSubmit}>
         <div id="new-log-hours">
           {this.formatNumber()}
