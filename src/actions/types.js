@@ -1,7 +1,7 @@
-//EXAMPLE
-
 export const SET_PARTICIPANT = 'SET_PARTICIPANT'
 export const REMOVE_PARTICIPANT = 'REMOVE_PARTICIPANT'
 export const SET_AUTH_USER = 'SET_AUTH_USER'
 export const REMOVE_AUTH_USER = 'REMOVE_AUTH_USER'
 export const SET_LOGS = 'SET_LOGS'
+export const ADD_LOG = 'ADD_LOG'
+export const ADD_ID_TO_LOG = 'ADD_ID_TO_LOG'

@@ -12,7 +12,7 @@ const ProgressBar = (props) => {
 		<div className="home-wrapper">
 			<h3>PROGRESS</h3>
 			<div id="progress-container" className="logs-white-round">
-				<h1>{percentage*100}% complete</h1>
+				<h1>{parseInt(percentage*100, 10)}% complete</h1>
 				<div id="progress-bar-container" style={progressBarCont}>
 					<div id="progress-so-far">
 						<div id="progress-label-circle">{props.hours}h</div>

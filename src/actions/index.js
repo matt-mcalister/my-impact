@@ -18,16 +18,9 @@ export const setAuthUser = (uid) => {
         firebase.db.collection('participant').doc(uid).collection('entries').get().then( payload => {
           if (payload.docs && payload.docs.length > 0){
             const logs = [...payload.docs].map(doc => doc.data() )
-            const sortByDate = (a,b) => {
-              const aDate = new Date(a.datePerformed)
-              const bDate = new Date(b.datePerformed)
-              if (bDate > aDate) return 1;
-              if (bDate < aDate) return -1;
-              return 0;
-            }
             dispatch({
               type: actions.SET_LOGS,
-              payload: logs.sort(sortByDate)
+              payload: logs
             })
           }
         })
@@ -36,7 +29,18 @@ export const setAuthUser = (uid) => {
       }
     })
   }
+}
 
+export const addLog = (log, uid) => {
+  return (dispatch) => {
+    dispatch({
+      type: actions.ADD_LOG,
+      payload: log,
+    })
+    const newLogRef = firebase.db.collection('participant').doc(uid).collection('entries').doc()
+    console.log("NEW REF ID: ", newLogRef.id);
+    newLogRef.set({...log, id: newLogRef.id}).then(() => dispatch({ type: actions.ADD_ID_TO_LOG, payload: newLogRef.id}) ).catch(console.log)
+  }
 }
 
 export const removeAuthUser = () => {

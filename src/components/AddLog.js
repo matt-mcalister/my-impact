@@ -1,18 +1,22 @@
 import React from "react";
 import { Icon, Modal } from 'semantic-ui-react'
 import { AmountDonated, DatePerformed, OptionalTextField } from "./LogAdditions"
+import { connect } from "react-redux"
+import { addLog } from "../actions"
+
+const defaultState = {
+  numHours: 0,
+  datePerformed: null,
+  eventTitle: null,
+  organizationTitle: null,
+  amountDonated: null,
+  addingAttribute: false,
+  open: false,
+}
 
 class AddLog extends React.Component {
 
-  state = {
-    numHours: 0,
-    datePerformed: null,
-    eventTitle: null,
-    organizationTitle: null,
-    amountDonated: null,
-    addingAttribute: false,
-    open: false,
-  }
+  state = defaultState
 
   addAttribute = (attribute) => {
     this.setState({
@@ -52,7 +56,23 @@ class AddLog extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state);
+    const datePerformed = this.state.datePerformed ? this.state.datePerformed : new Date().toISOString()
+
+    const withEvent = this.state.eventTitle ? ` for the event ${this.state.eventTitle}` : ""
+    const withOrg = this.state.organizationTitle ? ` with the organization ${this.state.organizationTitle}` : ""
+    const withDonation = this.state.amountDonated ? ` $${parseFloat(this.state.amountDonated).toFixed(2)}.` : ""
+
+    const newLog = {
+      numHours: this.state.numHours,
+      eventTitle: this.state.eventTitle,
+      organizationTitle: this.state.organizationTitle,
+      amountDonated: this.state.amountDonated && parseFloat(this.state.amountDonated),
+      dateLogged: new Date().toISOString(),
+      datePerformed: datePerformed,
+      description: `You logged ${parseFloat(this.state.numHours)} hours${withOrg}${withEvent}.${withDonation}`,
+      visibility: "full_details",
+    }
+    this.props.addLog(newLog, this.props.uid)
     this.closeModal()
   }
 
@@ -73,9 +93,7 @@ class AddLog extends React.Component {
   }
 
   closeModal = () => {
-    this.setState({
-      open: false,
-    })
+    this.setState(defaultState)
   }
 
 
@@ -103,4 +121,10 @@ class AddLog extends React.Component {
     )
   }
 }
-export default AddLog
+
+const mapStateToProps = (state) => {
+  return {
+    uid: state.auth.uid
+  }
+}
+export default connect(mapStateToProps, { addLog })(AddLog)

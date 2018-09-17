@@ -20,13 +20,15 @@ class DatePerformed extends React.Component {
   }
 
 	isValidDate = (date) => {
-	  return date instanceof Date && !isNaN(date);
+	  return !isNaN(new Date(date));
 	}
 
   handleChange = (e) => {
 		if (this.isValidDate(e.target.value)){
+			const datePerformed = new Date(e.target.value)
+			console.log(datePerformed);
 	    this.setState({
-	      datePerformed: new Date(e.target.value),
+	      datePerformed: datePerformed,
 	    })
 		}
   }
@@ -43,7 +45,7 @@ class DatePerformed extends React.Component {
       editVisible: false,
       hasBeenSet: true,
     })
-    this.props.handleValueSet("datePerformed", this.state.datePerformed.toISOString(),)
+    this.props.handleValueSet("datePerformed", this.state.datePerformed.toISOString() )
   }
 
 	cancel = (e) => {

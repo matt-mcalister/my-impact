@@ -7,6 +7,7 @@ const formatDate = (dateString) => {
 }
 
 const Log = (props) => {
+  console.log(props);
   return (
     <div className="log">
       <div className="log-hours">{props.numHours}</div>
@@ -15,7 +16,7 @@ const Log = (props) => {
         <ul>
           {props.eventTitle && <li>Event: {props.eventTitle}</li>}
           {props.organizationTitle && <li>Organization: {props.organizationTitle}</li>}
-          {props.amountDonated && <li>Donation: ${props.amountDonated}.00</li>}
+          {props.amountDonated && <li>Donation: ${parseFloat(props.amountDonated).toFixed(2)}</li>}
         </ul>
       </div>
       <div className="log-date">{formatDate(props.datePerformed)}</div>
