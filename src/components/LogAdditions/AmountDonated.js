@@ -1,5 +1,7 @@
 import React from "react"
 
+import { Icon } from "semantic-ui-react"
+
 class AmountDonated extends React.Component {
 	state = {
     editVisible: false,
@@ -62,17 +64,17 @@ class AmountDonated extends React.Component {
 
 	render(){
 		if (this.state.hasBeenSet) {
-      return (<p className="new-log-set-attribute" onClick={this.visibleTrue}>${this.state.amountDonated.toFixed(2)}</p>)
+      return (<p className="new-log-attribute set" onClick={this.visibleTrue}><Icon name="dollar" color="grey" />${this.state.amountDonated.toFixed(2)}</p>)
     } else if (this.state.editVisible) {
       return (
         <React.Fragment>
           <input className="new-log-optional" type="number" step="0.01" min="0.00" onKeyPress={this.handleKeyPress} onChange={this.handleChange} defaultValue={this.state.amountDonated.toFixed(2)}/>
-          <button className="new-log-optional" type="button" value={this.state.amountDonated.toFixed(2)} onClick={this.handleSubmit}>Add Donation</button>
-          <button className="new-log-optional" type="button" onClick={this.cancel}>Cancel</button>
+          <button className="new-log-optional submit" type="button" value={this.state.amountDonated.toFixed(2)} onClick={this.handleSubmit}>Add Donation</button>
+          <button className="new-log-optional cancel" type="button" onClick={this.cancel}>Cancel</button>
         </React.Fragment>
         )
     } else {
-      return (<p className="new-log-no-attribute" onClick={this.visibleTrue}>Add Donation</p>)
+      return (<p className="new-log-attribute no" onClick={this.visibleTrue}><Icon name="dollar" color="grey" />Add Donation</p>)
     }
 	}
 }

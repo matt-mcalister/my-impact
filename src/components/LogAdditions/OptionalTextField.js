@@ -1,5 +1,8 @@
 import React from "react"
 
+import { Icon } from "semantic-ui-react"
+
+
 class OptionalTextField extends React.Component {
 	state = {
     editVisible: false,
@@ -58,17 +61,17 @@ class OptionalTextField extends React.Component {
 
 	render(){
 		if (this.state.hasBeenSet) {
-      return (<p className="new-log-set-attribute" onClick={this.visibleTrue}>{this.props.attributeText}: {this.state.attributeValue}</p>)
+      return (<p className="new-log-attribute set" onClick={this.visibleTrue}><Icon name={this.props.iconType} color="grey" />{this.props.attributeText}: {this.state.attributeValue}</p>)
     } else if (this.state.editVisible) {
       return (
         <React.Fragment>
           <input className="new-log-optional" type="text"  onKeyPress={this.handleKeyPress} onChange={this.handleChange} value={this.state.attributeValue}/>
-          <button className="new-log-optional" type="button" value={this.state.attributeValue} onClick={this.handleSubmit}>Add {this.props.attributeText}</button>
-					<button className="new-log-optional" type="button" onClick={this.cancel}>Cancel</button>
+          <button className="new-log-optional submit" type="button" value={this.state.attributeValue} onClick={this.handleSubmit}>Add {this.props.attributeText}</button>
+					<button className="new-log-optional cancel" type="button" onClick={this.cancel}>Cancel</button>
         </React.Fragment>
         )
     } else {
-      return (<p className="new-log-no-attribute" onClick={this.visibleTrue}>Add {this.props.attributeText}</p>)
+      return (<p className="new-log-attribute no" onClick={this.visibleTrue}><Icon name={this.props.iconType} color="grey" />Add {this.props.attributeText}</p>)
     }
 	}
 }

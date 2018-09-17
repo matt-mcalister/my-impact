@@ -192,11 +192,76 @@ body {
   align-items: center!important;
   justify-content: center!important;
 }
+/*  new log form */
 
 #new-log-form {
-  border: 1px solid red;
-  min-width: 50%;
+  min-width: 250px;
   min-height: 50%;
+}
+
+#new-log-hours {
+  width: 80%;
+  font-size: 200%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+#num-hours-value {
+  display: flex;
+}
+
+#decimal {
+  width: 20px;
+  font-size: 50%;
+  display: flex;
+  align-items: center;
+}
+
+#new-log-attribute-container {
+  margin-bottom: 10px;
+}
+
+#new-log-attribute-container p {
+  min-width: 300px;
+  margin-bottom: 0;
+  border: 2px solid white;
+  border-top: none;
+  color: grey;
+  font-size: 80%;
+  font-style: italic;
+}
+
+p.new-log-attribute.set {
+  color: #2b5b87!important;
+}
+
+.new-log-optional {
+  font-size: 80%;
+  border-width: thin;
+}
+
+button.new-log-optional {
+  border: none;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.new-log-optional.submit {
+  background-color: #2b5b87;
+  color: white;
+}
+
+.new-log-optional.cancel {
+  background-color: white;
+  color: #2b5b87;
+}
+
+#add-log-submit {
+  width: 100%;
+  font-size: 150%;
+  background-color: #2b5b87;
+  color: white;
 }
 
 

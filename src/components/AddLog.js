@@ -54,27 +54,36 @@ class AddLog extends React.Component {
     console.log(this.state);
   }
 
+  formatNumber(){
+    const integer = parseInt(this.state.numHours, 10)
+    const decimal = this.state.numHours - integer
+    return (
+      <span id="num-hours-value">
+        <div id="int">{integer}</div><div id="decimal">{decimal > 0 ? `.5` : "  "}</div>
+      </span>
+    )
+  }
+
 
   render() {
-    console.log(this.state);
     return (
     <Modal id="log-modal" trigger={<Icon id="add-log-button" name="plus circle" size="large"/>} closeIcon>
       <form id="new-log-form" onSubmit={this.handleSubmit}>
         <div id="new-log-hours">
-          <label htmlFor="numHours">{this.state.numHours} Hours</label>
-          <Icon name="minus circle" onClick={this.subtractHours} />
-          <Icon name="plus circle" onClick={this.addHours} />
+          {this.formatNumber()}
+          <span id="hours">Hours</span>
+          <span id="hour-icons">
+            <Icon className="hour-icon" color="red" name="minus circle" onClick={this.subtractHours} />
+            <Icon className="hour-icon" color="green" name="plus circle" onClick={this.addHours} />
+          </span>
         </div>
-        <div id="new-log-attributes">
+        <div id="new-log-attribute-container">
           <DatePerformed addingAttribute={this.state.addingAttribute} addAttribute={this.addAttribute} handleValueSet={this.handleValueSet}/>
-          <br />
-          <OptionalTextField resetAddAttribute={this.resetAddAttribute} addingAttribute={this.state.addingAttribute} addAttribute={this.addAttribute} attributeKey="eventTitle" attributeText="Event" handleValueSet={this.handleValueSet}/>
-          <br />
-          <OptionalTextField resetAddAttribute={this.resetAddAttribute} addingAttribute={this.state.addingAttribute} addAttribute={this.addAttribute} attributeKey="organizationTitle" attributeText="Organization" handleValueSet={this.handleValueSet}/>
-          <br />
+          <OptionalTextField iconType="bullhorn" resetAddAttribute={this.resetAddAttribute} addingAttribute={this.state.addingAttribute} addAttribute={this.addAttribute} attributeKey="eventTitle" attributeText="Event" handleValueSet={this.handleValueSet}/>
+          <OptionalTextField iconType="group" resetAddAttribute={this.resetAddAttribute} addingAttribute={this.state.addingAttribute} addAttribute={this.addAttribute} attributeKey="organizationTitle" attributeText="Organization" handleValueSet={this.handleValueSet}/>
           <AmountDonated resetAddAttribute={this.resetAddAttribute} addingAttribute={this.state.addingAttribute} addAttribute={this.addAttribute} handleValueSet={this.handleValueSet}/>
         </div>
-        <input type="submit" value="Create" disabled={!!this.state.addingAttribute}/>
+        <input id="add-log-submit" type="submit" value="Create" disabled={!!this.state.addingAttribute}/>
       </form>
     </Modal>
     )
