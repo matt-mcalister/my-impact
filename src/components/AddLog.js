@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon, Modal } from 'semantic-ui-react'
-import { AmountDonated } from "./LogAdditions"
+import { AmountDonated, DatePerformed } from "./LogAdditions"
 
 class AddLog extends React.Component {
 
@@ -61,8 +61,9 @@ class AddLog extends React.Component {
           <Icon name="plus circle" onClick={this.addHours} />
         </div>
         <div>
-          <label htmlFor="datePerformed">Date: </label>
-          <input type="text" name="datePerformed" value={this.state.datePerformed} onChange={this.handleChange} />
+          {/* <label htmlFor="datePerformed">Date: </label>
+          <input type="text" name="datePerformed" value={this.state.datePerformed} onChange={this.handleChange} /> */}
+          <DatePerformed handleValueSet={this.handleValueSet}/>
           <br />
           <label htmlFor="eventTitle">Add Event: </label>
           <input type="text" name="eventTitle" value={this.state.eventTitle} onChange={this.handleChange} />
