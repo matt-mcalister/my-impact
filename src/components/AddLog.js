@@ -60,12 +60,12 @@ class AddLog extends React.Component {
     return (
     <Modal id="log-modal" trigger={<Icon id="add-log-button" name="plus circle" size="large"/>} closeIcon>
       <form id="new-log-form" onSubmit={this.handleSubmit}>
-        <div>
+        <div id="new-log-hours">
           <label htmlFor="numHours">{this.state.numHours} Hours</label>
           <Icon name="minus circle" onClick={this.subtractHours} />
           <Icon name="plus circle" onClick={this.addHours} />
         </div>
-        <div>
+        <div id="new-log-attributes">
           <DatePerformed addingAttribute={this.state.addingAttribute} addAttribute={this.addAttribute} handleValueSet={this.handleValueSet}/>
           <br />
           <OptionalTextField resetAddAttribute={this.resetAddAttribute} addingAttribute={this.state.addingAttribute} addAttribute={this.addAttribute} attributeKey="eventTitle" attributeText="Event" handleValueSet={this.handleValueSet}/>
@@ -74,7 +74,6 @@ class AddLog extends React.Component {
           <br />
           <AmountDonated resetAddAttribute={this.resetAddAttribute} addingAttribute={this.state.addingAttribute} addAttribute={this.addAttribute} handleValueSet={this.handleValueSet}/>
         </div>
-        <br />
         <input type="submit" value="Create" disabled={!!this.state.addingAttribute}/>
       </form>
     </Modal>

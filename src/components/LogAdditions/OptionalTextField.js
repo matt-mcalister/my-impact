@@ -58,17 +58,17 @@ class OptionalTextField extends React.Component {
 
 	render(){
 		if (this.state.hasBeenSet) {
-      return (<p onClick={this.visibleTrue}>{this.props.attributeText}: {this.state.attributeValue}</p>)
+      return (<p className="new-log-set-attribute" onClick={this.visibleTrue}>{this.props.attributeText}: {this.state.attributeValue}</p>)
     } else if (this.state.editVisible) {
       return (
         <React.Fragment>
-          <input type="text"  onKeyPress={this.handleKeyPress} onChange={this.handleChange} value={this.state.attributeValue}/>
-          <button type="button" value={this.state.attributeValue} onClick={this.handleSubmit}>Add {this.props.attributeText}</button>
-					<button type="button" onClick={this.cancel}>Cancel</button>
+          <input className="new-log-optional" type="text"  onKeyPress={this.handleKeyPress} onChange={this.handleChange} value={this.state.attributeValue}/>
+          <button className="new-log-optional" type="button" value={this.state.attributeValue} onClick={this.handleSubmit}>Add {this.props.attributeText}</button>
+					<button className="new-log-optional" type="button" onClick={this.cancel}>Cancel</button>
         </React.Fragment>
         )
     } else {
-      return (<p onClick={this.visibleTrue}>Add {this.props.attributeText}</p>)
+      return (<p className="new-log-no-attribute" onClick={this.visibleTrue}>Add {this.props.attributeText}</p>)
     }
 	}
 }
