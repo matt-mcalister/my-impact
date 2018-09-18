@@ -1,7 +1,9 @@
 import * as actions from "../actions/types"
 
 const eventsStateDefault = {
-  all: []
+  attending: [],
+  hosting: [],
+  all: [],
 }
 
 export default function eventsReducer( eventsState = eventsStateDefault , action ){
@@ -9,7 +11,7 @@ export default function eventsReducer( eventsState = eventsStateDefault , action
     case actions.SET_EVENTS:
       return {
         ...eventsState,
-        all: action.payload
+        ...action.payload,
       }
     case actions.REMOVE_AUTH_USER:
       return { ...eventsStateDefault }

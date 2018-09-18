@@ -43,16 +43,26 @@ export const addLog = (log, uid) => {
   }
 }
 
-export const setEvents = () => {
+export const setEvents = (uid) => {
   return (dispatch) => {
     firebase.db.collection('events').get().then( payload => {
 
       if (payload.docs && payload.docs.length > 0){
-        const events = {}
-        payload.docs.forEach(doc => (events[doc.id] = doc.data()) )
+        const hostingEvents = []
+        const attendingEvents = []
+        const allEvents = []
+         payload.docs.forEach(doc => {
+           if (doc.data().hostId === uid) {
+             hostingEvents.push(doc.data())
+           } else if (doc.data().attendingParticipantIds && doc.data().attendingParticipantIds[uid]) {
+             attendingEvents.push(doc.data())
+           } else {
+             allEvents.push(doc.data())
+           }
+         })
         dispatch({
           type: actions.SET_EVENTS,
-          payload: events
+          payload: {hosting: hostingEvents, attending: attendingEvents, all: allEvents}
         })
       }
 
