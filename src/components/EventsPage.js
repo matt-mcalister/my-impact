@@ -8,19 +8,16 @@ import EventShow from "./EventShow"
 class EventsPage extends React.Component {
 
 	componentDidMount(){
-		console.log("mount");
 		this.props.setEvents(this.props.uid)
 	}
 
 	componentDidUpdate(prevProps){
-		console.log("update");
 		if (prevProps.uid !== this.props.uid) {
 			this.props.setEvents(this.props.uid)
 		}
 	}
 
 	render(){
-		console.log(this.props);
 		return (
       <div className="main-content">
         {this.props.hosting.length > 1 && <EventSummaryContainer type="Hosting" events={this.props.hosting} />}
@@ -32,10 +29,11 @@ class EventsPage extends React.Component {
 	}
 }
 const mapStateToProps = state => {
-	console.log("YOOOOO, ", state);
 	return {
 		uid: state.auth.uid,
-		...state.events
+		hosting: state.events.hosting,
+		attending: state.events.attending,
+		all: state.events.all,
 	}
 }
 export default connect(mapStateToProps, { setEvents })(EventsPage)
