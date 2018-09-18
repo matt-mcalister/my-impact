@@ -115,7 +115,11 @@ class AddLog extends React.Component {
           <OptionalTextField iconType="group" resetAddAttribute={this.resetAddAttribute} addingAttribute={this.state.addingAttribute} addAttribute={this.addAttribute} attributeKey="organizationTitle" attributeText="Organization" handleValueSet={this.handleValueSet}/>
           <AmountDonated resetAddAttribute={this.resetAddAttribute} addingAttribute={this.state.addingAttribute} addAttribute={this.addAttribute} handleValueSet={this.handleValueSet}/>
         </div>
-        <input id="add-log-submit" type="submit" value="Create" disabled={!!this.state.addingAttribute}/>
+        { !!this.state.addingAttribute ?
+          (<input id="add-log-submit" type="submit" value="Create" disabled={true}/>)
+          :
+          (<input id="add-log-submit" type="submit" value="Create" style={{backgroundColor: "#2b5b87", color: "white"}}/>)
+        }
       </form>
     </Modal>
     )
