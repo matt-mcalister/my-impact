@@ -56,9 +56,8 @@ export const setEvents = (uid) => {
              hostingEvents.push(doc.data())
            } else if (doc.data().attendingParticipantIds && doc.data().attendingParticipantIds[uid]) {
              attendingEvents.push(doc.data())
-           } else {
-             allEvents.push(doc.data())
            }
+           allEvents.push(doc.data())
          })
         dispatch({
           type: actions.SET_EVENTS,
