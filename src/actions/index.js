@@ -43,6 +43,23 @@ export const addLog = (log, uid) => {
   }
 }
 
+export const setEvents = () => {
+  return (dispatch) => {
+    firebase.db.collection('events').get().then( payload => {
+
+      if (payload.docs && payload.docs.length > 0){
+        const events = {}
+        payload.docs.forEach(doc => (events[doc.id] = doc.data()) )
+        dispatch({
+          type: actions.SET_EVENTS,
+          payload: events
+        })
+      }
+
+    })
+  }
+}
+
 export const removeAuthUser = () => {
   return {
     type: actions.REMOVE_AUTH_USER
