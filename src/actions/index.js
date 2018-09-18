@@ -75,6 +75,19 @@ export const removeAuthUser = () => {
   }
 }
 
+export const viewEvent = (eventObj) => {
+  return {
+    type: actions.VIEW_EVENT,
+    payload: eventObj
+  }
+}
+
+export const removeSelectedEvent = () => {
+  return {
+    type: actions.REMOVE_SELECTED_EVENT
+  }
+}
+
 export const setParticipant = () => {
   return {
     type: actions.SET_PARTICIPANT

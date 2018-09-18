@@ -4,6 +4,7 @@ const eventsStateDefault = {
   attending: [],
   hosting: [],
   all: [],
+  selectedEvent: null,
 }
 
 export default function eventsReducer( eventsState = eventsStateDefault , action ){
@@ -12,6 +13,16 @@ export default function eventsReducer( eventsState = eventsStateDefault , action
       return {
         ...eventsState,
         ...action.payload,
+      }
+    case actions.VIEW_EVENT:
+      return {
+        ...eventsState,
+        selectedEvent: action.payload
+      }
+    case actions.REMOVE_SELECTED_EVENT:
+      return {
+        ...eventsState,
+        selectedEvent: null,
       }
     case actions.REMOVE_AUTH_USER:
       return { ...eventsStateDefault }

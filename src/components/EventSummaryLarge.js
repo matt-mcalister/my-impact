@@ -1,10 +1,13 @@
 import React from "react"
+import { viewEvent } from "../actions"
+import { connect } from "react-redux"
+
 
 const EventSummaryLarge = (props) => {
   const startDate = new Date(props.dateStart)
   const pastEvent = new Date() > startDate
 	return (
-      <div className="event-summary-large">
+      <div className="event-summary-large" onClick={() => props.viewEvent(props)}>
         <div className="img-container-centered event-sum-image">
           <img src={props.imagePath} alt={props.title} />
         </div>
@@ -20,4 +23,4 @@ const EventSummaryLarge = (props) => {
   )
 }
 
-export default EventSummaryLarge
+export default connect(null, { viewEvent })(EventSummaryLarge)

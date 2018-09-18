@@ -1,10 +1,13 @@
 import React from "react"
+import { viewEvent } from "../actions"
+import { connect } from "react-redux"
+
 
 const EventSummarySmall = (props) => {
   const startDate = new Date(props.dateStart)
   const pastEvent = new Date() > startDate
 	return (
-      <div className="event-summary-small">
+      <div className="event-summary-small" onClick={() => props.viewEvent(props)}>
         <div className="img-container-centered">
           <img src={props.imagePath} alt={props.title} />
         </div>
@@ -17,4 +20,4 @@ const EventSummarySmall = (props) => {
   )
 }
 
-export default EventSummarySmall
+export default connect(null, { viewEvent })(EventSummarySmall)
