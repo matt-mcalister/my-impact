@@ -473,3 +473,38 @@ button.new-log-optional {
   align-items: flex-start;
   padding: 5px;
 }
+
+/* SELECTED EVENT */
+
+#selected-event {
+  min-height: 400px;
+  min-width: 200px;
+  height: 80vh;
+  width: 60vw;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+}
+
+#selected-event-img-cont {
+  margin-top: 2vh;
+  height: 40%;
+  width: 100%;
+  overflow: hidden;
+}
+
+#selected-event-info {
+  height: 50%;
+}
+
+#attendees-container {
+  height: 10%;
+  width: 100%;
+}
+
+.attendee-icon {
+  height: 100%;
+  width: 10%;
+  overflow: hidden;
+}

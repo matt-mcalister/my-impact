@@ -67,13 +67,15 @@ class EventShow extends React.Component {
         <div id="selected-event-img-cont" className="img-container-centered">
           <img src={this.props.selectedEvent && this.props.selectedEvent.imagePath} alt={this.props.selectedEvent && this.props.selectedEvent.title} />
         </div>
-        <h1>{this.props.selectedEvent && this.props.selectedEvent.title}</h1>
-        <div id="selected-event-sub-header">
-          <h4>Posted by {this.state.host ? this.state.host.name : "anonymous"}</h4>
-          <h4>{this.props.selectedEvent && (new Date(this.props.selectedEvent.dateStart).toLocaleDateString('en-us-iso8601', {month: 'short', day: "numeric", year: "numeric"}))}</h4>
-          <h4>{this.props.selectedEvent && this.props.selectedEvent.location.address}</h4>
+        <div id="selected-event-info">
+          <h1>{this.props.selectedEvent && this.props.selectedEvent.title}</h1>
+          <div id="selected-event-sub-header">
+            <h4>Posted by {this.state.host ? this.state.host.name : "anonymous"}</h4>
+            <h4>{this.props.selectedEvent && (new Date(this.props.selectedEvent.dateStart).toLocaleDateString('en-us-iso8601', {month: 'short', day: "numeric", year: "numeric"}))}</h4>
+            <h4>{this.props.selectedEvent && this.props.selectedEvent.location.address}</h4>
+          </div>
+          <p>{this.props.selectedEvent && this.props.selectedEvent.description}</p>
         </div>
-        <p>{this.props.selectedEvent && this.props.selectedEvent.description}</p>
         {this.state.attendees && (
           <div id="event-attendees">
             Attending:
