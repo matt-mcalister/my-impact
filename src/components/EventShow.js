@@ -3,6 +3,7 @@ import { Modal } from "semantic-ui-react"
 import { connect } from "react-redux"
 import { removeSelectedEvent } from "../actions"
 import { firebase } from "../firebase"
+import AttendeeIcon from "./AttendeeIcon"
 
 const defaultState = {
   host: null,
@@ -29,19 +30,28 @@ class EventShow extends React.Component {
       .get().then( doc => this.setState({host: doc.data()}) )
   }
 
-  setAttendees = () => {
+  setAttendees = async () => {
     const attendees = this.props.selectedEvent.attendingParticipantIds
+    const attendeesArr = []
     for (let uid in attendees) {
       if (attendees[uid]) {
-        this.addAttendeeToState(uid)
+        const attendee = await this.getAttendee(uid)
+        if (attendee){
+          attendeesArr.push(attendee)
+        }
       }
+    }
+    if (attendeesArr.length > 0) {
+      this.setState({ attendees: attendeesArr })
     }
   }
 
-  addAttendeeToState(uid){
-    const attendees = this.state.attendees || []
-    firebase.db.collection("participant").doc(this.props.selectedEvent.hostId)
-      .get().then( doc => this.setState({attendees: [...attendees, doc.data()]} ) )
+  getAttendee = async (uid) => {
+    const doc = await firebase.db.collection("participant").doc(uid).get()
+    if (doc.data()) {
+      return await doc.data()
+    }
+    return null
   }
 
   handleClose = () => {
@@ -50,7 +60,8 @@ class EventShow extends React.Component {
   }
 
   render() {
-    console.log(this.state);
+    this.props.selectedEvent && console.log("STATE: ", this.state.attendees)
+
     return (
       <Modal id="selected-event" open={!!this.props.selectedEvent} onClose={this.handleClose}>
         <div id="selected-event-img-cont" className="img-container-centered">
@@ -67,7 +78,7 @@ class EventShow extends React.Component {
           <div id="event-attendees">
             Attending:
             <div id="attendees-container">
-              yo
+              {this.state.attendees.map(a => <AttendeeIcon key={a.id} participant={a}/>)}
             </div>
           </div>
         )}

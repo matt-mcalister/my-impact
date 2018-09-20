@@ -55,6 +55,7 @@ export const setEvents = (uid) => {
            if (doc.data().hostId === uid) {
              hostingEvents.push(doc.data())
            } else if (doc.data().attendingParticipantIds && doc.data().attendingParticipantIds[uid]) {
+             // console.log(doc.data(), uid);
              attendingEvents.push(doc.data())
            }
            allEvents.push(doc.data())
