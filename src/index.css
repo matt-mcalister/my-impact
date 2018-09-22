@@ -440,6 +440,11 @@ button.new-log-optional {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow:hidden;
+}
+
+.img-container-centered > img {
+  height: 100%;
 }
 
 .event-summary-large {
@@ -479,8 +484,8 @@ button.new-log-optional {
 #selected-event {
   min-height: 400px;
   min-width: 200px;
-  height: 80vh;
-  width: 60vw;
+  height: 90vh;
+  width: 80vw;
   padding-left: 5%;
   padding-right: 5%;
   padding-top: 2.5%;
@@ -495,16 +500,31 @@ button.new-log-optional {
 }
 
 #selected-event-info {
-  height: 50%;
+  height: 45%;
+}
+
+#selected-event-info * {
+  margin:0;
 }
 
 #attendees-container {
-  height: 10%;
+  min-height: 40px;
+  max-height: 9vh;
   width: 100%;
 }
 
 .attendee-icon {
-  height: 100%;
+  min-height: 40px;
+  max-height: 9vh;
   width: 10%;
-  overflow: hidden;
+}
+
+.attendee-icon > div.img-container-centered {
+  min-height: 38px;
+  max-height: 7.2vh;
+}
+
+.attendee-icon > div.img-container-centered > img {
+  min-height: 38px;
+  max-height: 7.2vh;
 }

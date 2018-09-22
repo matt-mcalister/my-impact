@@ -68,7 +68,7 @@ class EventShow extends React.Component {
           <img src={this.props.selectedEvent && this.props.selectedEvent.imagePath} alt={this.props.selectedEvent && this.props.selectedEvent.title} />
         </div>
         <div id="selected-event-info">
-          <h1>{this.props.selectedEvent && this.props.selectedEvent.title}</h1>
+          <h2>{this.props.selectedEvent && this.props.selectedEvent.title}</h2>
           <div id="selected-event-sub-header">
             <h4>Posted by {this.state.host ? this.state.host.name : "anonymous"}</h4>
             <h4>{this.props.selectedEvent && (new Date(this.props.selectedEvent.dateStart).toLocaleDateString('en-us-iso8601', {month: 'short', day: "numeric", year: "numeric"}))}</h4>
