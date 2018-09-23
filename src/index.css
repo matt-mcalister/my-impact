@@ -511,6 +511,7 @@ button.new-log-optional {
   min-height: 40px;
   max-height: 9vh;
   width: 100%;
+  display: flex;
 }
 
 .attendee-icon {

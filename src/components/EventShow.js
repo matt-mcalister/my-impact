@@ -60,7 +60,6 @@ class EventShow extends React.Component {
   }
 
   render() {
-    this.props.selectedEvent && console.log("STATE: ", this.state.attendees)
 
     return (
       <Modal id="selected-event" open={!!this.props.selectedEvent} onClose={this.handleClose}>
@@ -76,17 +75,27 @@ class EventShow extends React.Component {
           </div>
           <p>{this.props.selectedEvent && this.props.selectedEvent.description}</p>
         </div>
-        {this.state.attendees && (
-          <div id="event-attendees">
+        <div id="event-attendees">
             Attending:
             <div id="attendees-container">
-              {this.state.attendees.map(a => <AttendeeIcon key={a.id} participant={a}/>)}
+              {this.state.attendees ?
+                this.state.attendees.map(a => <AttendeeIcon key={a.id} participant={a}/>)
+                :
+                <p>Be the first to RSVP!</p>
+              }
             </div>
           </div>
-        )}
+        <button id="attend-button">{this.props.currentUserAttending ? "Leave Event" : "Mark as Attending"}</button>
       </Modal>
     )
   }
 }
 
-export default connect(state => ({selectedEvent: state.events.selectedEvent}), { removeSelectedEvent })(EventShow)
+const mapStateToProps = (state) => {
+  return {
+    selectedEvent: state.events.selectedEvent,
+    currentUserAttending: !!state.events.selectedEvent && !!state.events.selectedEvent.attendingParticipantIds[state.auth.uid]
+  }
+}
+
+export default connect(mapStateToProps, { removeSelectedEvent })(EventShow)
