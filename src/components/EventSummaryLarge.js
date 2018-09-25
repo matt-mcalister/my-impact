@@ -18,13 +18,10 @@ function formatDescription(description){
 const EventSummaryLarge = (props) => {
   const startDate = new Date(props.dateStart)
   const pastEvent = new Date() > startDate
-  if (!props.imagePath){
-    console.log(props);
-  }
 	return (
       <div className="event-summary-large" onClick={() => props.viewEvent(props)}>
         <div className="img-container-centered event-sum-image">
-          <img src={props.imagePath} alt={props.title} />
+          <img src={props.imagePath || "/images/default-event.jpg"} alt={props.title} />
         </div>
         <div className="event-summary-info">
           <h3>{props.title}</h3>

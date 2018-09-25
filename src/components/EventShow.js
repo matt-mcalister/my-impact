@@ -76,7 +76,7 @@ class EventShow extends React.Component {
     return (
       <Modal id="selected-event" open={!!this.props.selectedEvent} onClose={this.handleClose}>
         <div id="selected-event-img-cont" className="img-container-centered">
-          <img src={this.props.selectedEvent && this.props.selectedEvent.imagePath} alt={this.props.selectedEvent && this.props.selectedEvent.title} />
+          <img src={this.props.selectedEvent && (this.props.selectedEvent.imagePath || "/images/default-event.jpg")} alt={this.props.selectedEvent && this.props.selectedEvent.title} />
         </div>
         <div id="selected-event-info">
           <h2>{this.props.selectedEvent && this.props.selectedEvent.title}</h2>

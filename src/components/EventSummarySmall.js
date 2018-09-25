@@ -9,7 +9,7 @@ const EventSummarySmall = (props) => {
 	return (
       <div className="event-summary-small" onClick={() => props.viewEvent(props)}>
         <div className="img-container-centered">
-          <img src={props.imagePath} alt={props.title} />
+          <img src={props.imagePath || "/images/default-event.jpg"} alt={props.title} />
         </div>
         <div className="details-overlay">
           <h5>{props.title}</h5>
