@@ -48,17 +48,16 @@ export const setEvents = (uid) => {
     firebase.db.collection('events').get().then( payload => {
 
       if (payload.docs && payload.docs.length > 0){
-        const hostingEvents = []
-        const attendingEvents = []
-        const allEvents = []
+        const hostingEvents = {}
+        const attendingEvents = {}
+        const allEvents = {}
          payload.docs.forEach(doc => {
            if (doc.data().hostId === uid) {
-             hostingEvents.push(doc.data())
+             hostingEvents[doc.data().id] = doc.data()
            } else if (doc.data().attendingParticipantIds && doc.data().attendingParticipantIds[uid]) {
-             // console.log(doc.data(), uid);
-             attendingEvents.push(doc.data())
+             attendingEvents[doc.data().id] = doc.data()
            }
-           allEvents.push(doc.data())
+           allEvents[doc.data().id] = doc.data()
          })
         dispatch({
           type: actions.SET_EVENTS,
@@ -70,16 +69,20 @@ export const setEvents = (uid) => {
   }
 }
 
+export const markAsAttending = (participantId, eventId) => {
+
+}
+
 export const removeAuthUser = () => {
   return {
     type: actions.REMOVE_AUTH_USER
   }
 }
 
-export const viewEvent = (eventObj) => {
+export const viewEvent = (eventId) => {
   return {
     type: actions.VIEW_EVENT,
-    payload: eventObj
+    payload: eventId
   }
 }
 

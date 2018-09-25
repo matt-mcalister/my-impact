@@ -19,7 +19,7 @@ const EventSummaryLarge = (props) => {
   const startDate = new Date(props.dateStart)
   const pastEvent = new Date() > startDate
 	return (
-      <div className="event-summary-large" onClick={() => props.viewEvent(props)}>
+      <div className="event-summary-large" onClick={() => props.viewEvent(props.id)}>
         <div className="event-location">
           {props.location.region}
         </div>

@@ -1,9 +1,9 @@
 import * as actions from "../actions/types"
 
 const eventsStateDefault = {
-  attending: [],
-  hosting: [],
-  all: [],
+  attending: {},
+  hosting: {},
+  all: {},
   selectedEvent: null,
 }
 

@@ -105,7 +105,7 @@ class EventShow extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    selectedEvent: state.events.selectedEvent,
+    selectedEvent: state.events.all[state.events.selectedEvent],
     currentUserAttending: !!state.events.selectedEvent && !!state.events.selectedEvent.attendingParticipantIds && !!state.events.selectedEvent.attendingParticipantIds[state.auth.uid]
   }
 }

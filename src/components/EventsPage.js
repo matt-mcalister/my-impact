@@ -29,11 +29,14 @@ class EventsPage extends React.Component {
 	}
 }
 const mapStateToProps = state => {
+	const formatEventsObject = (eventsObj) => {
+		return Object.keys(eventsObj).map(id => eventsObj[id])
+	}
 	return {
 		uid: state.auth.uid,
-		hosting: state.events.hosting,
-		attending: state.events.attending,
-		all: state.events.all,
+		hosting: formatEventsObject(state.events.hosting),
+		attending: formatEventsObject(state.events.attending),
+		all: formatEventsObject(state.events.all),
 	}
 }
 export default connect(mapStateToProps, { setEvents })(EventsPage)

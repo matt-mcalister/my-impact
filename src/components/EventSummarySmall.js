@@ -7,7 +7,7 @@ const EventSummarySmall = (props) => {
   const startDate = new Date(props.dateStart)
   const pastEvent = new Date() > startDate
 	return (
-      <div className="event-summary-small" onClick={() => props.viewEvent(props)}>
+      <div className="event-summary-small" onClick={() => props.viewEvent(props.id)}>
         <div className="img-container-centered">
           <img src={props.imagePath || "/images/default-event.jpg"} alt={props.title} />
         </div>
