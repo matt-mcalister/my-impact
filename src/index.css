@@ -488,22 +488,37 @@ button.new-log-optional {
   width: 80vw;
   padding-left: 5%;
   padding-right: 5%;
-  padding-top: 2.5%;
-  padding-bottom: 2.5%;
+  /* padding-top: 2.5%; */
+  /* padding-bottom: 2.5%; */
+  display: grid!important;
+  grid-template-rows: 2vh minmax(150px, 40%) auto 10% 1vh;
+  grid-template-columns: 5% 90% 5%;
+  grid-template-areas: "mt mt mt" "ml top mr" "ml center mr" "ml bottom mr" "mb mb mb"
 }
 
 #selected-event-img-cont {
-  margin-top: 2vh;
-  height: 40%;
+  grid-area: top;
+  /* padding-top: 2vh; */
+  height: 100%;
   width: 100%;
   overflow: hidden;
 }
 
-#selected-event-info {
-  height: 45%;
+#selected-event-img-cont > img {
+  width: auto;
+  min-width: 100%;
+  object-fit: cover;
+  -o-object-fit: cover;
 }
 
-#selected-event-info * {
+#selected-event-info {
+  grid-area: center;
+  max-height: 100%;
+  overflow-y: scroll;
+  word-wrap: break-word;
+}
+
+#selected-event-sub-header * {
   margin:0;
 }
 
@@ -528,4 +543,8 @@ button.new-log-optional {
 .attendee-icon > div.img-container-centered > img {
   min-height: 38px;
   max-height: 7.2vh;
+}
+
+#attend-button {
+  grid-area: bottom;
 }

@@ -59,6 +59,18 @@ class EventShow extends React.Component {
     this.props.removeSelectedEvent()
   }
 
+  formatDescription() {
+    const description = this.props.selectedEvent.description.split("http")
+    if (description.length === 1){
+      return (<p>{description[0]}</p>)
+    } else {
+      const url = `http${description[1]}`
+      return (
+        <p>{description[0]} <a href={url}>{url}</a></p>
+      )
+    }
+  }
+
   render() {
 
     return (
@@ -73,18 +85,18 @@ class EventShow extends React.Component {
             <h4>{this.props.selectedEvent && (new Date(this.props.selectedEvent.dateStart).toLocaleDateString('en-us-iso8601', {month: 'short', day: "numeric", year: "numeric"}))}</h4>
             <h4>{this.props.selectedEvent && this.props.selectedEvent.location.address}</h4>
           </div>
-          <p>{this.props.selectedEvent && this.props.selectedEvent.description}</p>
-        </div>
-        <div id="event-attendees">
-            Attending:
-            <div id="attendees-container">
-              {this.state.attendees ?
-                this.state.attendees.map(a => <AttendeeIcon key={a.id} participant={a}/>)
-                :
-                <p>Be the first to RSVP!</p>
-              }
+          {this.props.selectedEvent && this.formatDescription()}
+          <div id="event-attendees">
+              Attending:
+              <div id="attendees-container">
+                {this.state.attendees ?
+                  this.state.attendees.map(a => <AttendeeIcon key={a.id} participant={a}/>)
+                  :
+                  <p>Be the first to RSVP!</p>
+                }
+              </div>
             </div>
-          </div>
+        </div>
         <button id="attend-button">{this.props.currentUserAttending ? "Leave Event" : "Mark as Attending"}</button>
       </Modal>
     )
@@ -94,7 +106,7 @@ class EventShow extends React.Component {
 const mapStateToProps = (state) => {
   return {
     selectedEvent: state.events.selectedEvent,
-    currentUserAttending: !!state.events.selectedEvent && !!state.events.selectedEvent.attendingParticipantIds[state.auth.uid]
+    currentUserAttending: !!state.events.selectedEvent && !!state.events.selectedEvent.attendingParticipantIds && !!state.events.selectedEvent.attendingParticipantIds[state.auth.uid]
   }
 }
 
