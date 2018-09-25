@@ -403,9 +403,11 @@ button.new-log-optional {
   width: 80vw;
 }
 
-.events-wrapper > h1 {
-  color: grey;
+#all-events-headers {
   margin-left: 5%;
+}
+#all-events-headers > h1 {
+  color: grey;
 }
 
 .details-overlay {
