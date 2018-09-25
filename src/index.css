@@ -381,7 +381,11 @@ button.new-log-optional {
 #events-summary-container {
   display:inline-flex;
   overflow-x: scroll;
-  padding: 3px;
+  padding: 20px 0px;
+}
+
+#events-summary-container::-webkit-scrollbar {
+  display: none!important;
 }
 
 .event-summary-small {

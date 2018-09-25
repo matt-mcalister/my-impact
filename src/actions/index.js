@@ -69,8 +69,26 @@ export const setEvents = (uid) => {
   }
 }
 
-export const markAsAttending = (participantId, eventId) => {
-
+export const markAsAttending = (participantId, eventObj) => {
+  return (dispatch) => {
+    if (!eventObj.attendingParticipantIds) {
+      eventObj.attendingParticipantIds = {}
+    }
+    eventObj.attendingParticipantIds = {
+      ...eventObj.attendingParticipantIds,
+      [participantId]: true,
+    }
+    dispatch({
+      type: actions.MARK_AS_ATTENDING,
+      payload: eventObj
+    })
+    console.log("ID: ", eventObj.id);
+    console.log("PARTICIPANTS: ", eventObj.attendingParticipantIds);
+    console.log("NEW P_ID: ", participantId);
+    firebase.db.collection('events').doc(eventObj.id).update({
+      attendingParticipantIds: eventObj.attendingParticipantIds
+    }).then(console.log)
+  }
 }
 
 export const removeAuthUser = () => {

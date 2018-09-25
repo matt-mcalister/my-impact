@@ -1,7 +1,7 @@
 import React from "react"
 import { Modal } from "semantic-ui-react"
 import { connect } from "react-redux"
-import { removeSelectedEvent } from "../actions"
+import { removeSelectedEvent, markAsAttending } from "../actions"
 import { firebase } from "../firebase"
 import AttendeeIcon from "./AttendeeIcon"
 
@@ -19,7 +19,10 @@ class EventShow extends React.Component {
   }
 
   componentDidUpdate(prevProps){
-    if (this.props.selectedEvent && (!prevProps.selectedEvent || this.props.selectedEvent.id !== prevProps.selectedEvent.id) ){
+    if (this.props.selectedEvent &&
+      (!prevProps.selectedEvent || this.props.selectedEvent.id !== prevProps.selectedEvent.id
+        || JSON.stringify(this.props.attendees) !== JSON.stringify(prevProps.attendees))
+    ){
       this.setHost()
       this.setAttendees()
     }
@@ -31,7 +34,7 @@ class EventShow extends React.Component {
   }
 
   setAttendees = async () => {
-    const attendees = this.props.selectedEvent.attendingParticipantIds
+    const attendees = this.props.attendees
     const attendeesArr = []
     for (let uid in attendees) {
       if (attendees[uid]) {
@@ -57,6 +60,13 @@ class EventShow extends React.Component {
   handleClose = () => {
     this.setState(defaultState)
     this.props.removeSelectedEvent()
+  }
+
+  handleClick = () => {
+    console.log("yo");
+    if (!this.props.currentUserAttending) {
+      this.props.markAsAttending(this.props.uid, this.props.selectedEvent)
+    }
   }
 
   formatDescription() {
@@ -97,7 +107,7 @@ class EventShow extends React.Component {
               </div>
             </div>
         </div>
-        <button id="attend-button">{this.props.currentUserAttending ? "Leave Event" : "Mark as Attending"}</button>
+        <button id="attend-button" onClick={this.handleClick}>{this.props.currentUserAttending ? "Leave Event" : "Mark as Attending"}</button>
       </Modal>
     )
   }
@@ -105,9 +115,11 @@ class EventShow extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    uid: state.auth.uid,
+    attendees: state.events.all[state.events.selectedEvent] ? state.events.all[state.events.selectedEvent].attendingParticipantIds : null,
     selectedEvent: state.events.all[state.events.selectedEvent],
-    currentUserAttending: !!state.events.selectedEvent && !!state.events.selectedEvent.attendingParticipantIds && !!state.events.selectedEvent.attendingParticipantIds[state.auth.uid]
+    currentUserAttending: !!state.events.attending[state.events.selectedEvent]
   }
 }
 
-export default connect(mapStateToProps, { removeSelectedEvent })(EventShow)
+export default connect(mapStateToProps, { removeSelectedEvent, markAsAttending })(EventShow)
