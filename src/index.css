@@ -496,6 +496,10 @@ button.new-log-optional {
   grid-template-areas: "mt mt mt" "ml top mr" "ml center mr" "ml bottom mr" "mb mb mb"
 }
 
+#selected-event *::-webkit-scrollbar {
+  display: none!important;
+}
+
 #selected-event-img-cont {
   grid-area: top;
   /* padding-top: 2vh; */
@@ -523,19 +527,28 @@ button.new-log-optional {
 }
 
 #attendees-container {
-  min-height: 40px;
-  max-height: 9vh;
+  min-height: 52px;
+  max-height: calc(9vh + 12px);
   width: 100%;
   display: flex;
+  overflow-x: scroll;
 }
 
 .attendee-icon {
   min-height: 40px;
   max-height: 9vh;
+  min-width: 50px;
   width: 10%;
+  margin-right: 5px;
+  margin-top: 2px;
 }
 
 .attendee-icon > div.img-container-centered {
+  border-radius: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 38px;
+  max-width: 7.2vh;
   min-height: 38px;
   max-height: 7.2vh;
 }
@@ -545,6 +558,23 @@ button.new-log-optional {
   max-height: 7.2vh;
 }
 
+.attendee-name {
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  min-height: 2px;
+  max-height: 1.8vh;
+}
+
 #attend-button {
   grid-area: bottom;
+  background-color: #2b5b87;
+  color: white;
+  height: 80%;
+  width: 60%;
+  min-width: 200px;
+  margin: auto;
+  border: none;
+  border-radius: 10px;
 }
