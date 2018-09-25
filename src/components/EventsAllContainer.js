@@ -90,8 +90,8 @@ class EventsAllContainer extends React.Component {
       <div className="home-wrapper logs-white-round events-wrapper">
         <div id="all-events-headers">
           <h1>Get Involved</h1>
-          <select onChange={this.handleChange}>
-            {statesArr.map(s => <option value={s.code} selected={this.state.filterBy === s.code}>{s.name}</option>)}
+          <select onChange={this.handleChange} value={this.state.filterBy}>
+            {statesArr.map(s => <option key={s.code} value={s.code}>{s.name}</option>)}
           </select>
         </div>
         <div id="events-all-container">

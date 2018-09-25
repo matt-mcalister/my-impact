@@ -20,6 +20,9 @@ const EventSummaryLarge = (props) => {
   const pastEvent = new Date() > startDate
 	return (
       <div className="event-summary-large" onClick={() => props.viewEvent(props)}>
+        <div className="event-location">
+          {props.location.region}
+        </div>
         <div className="img-container-centered event-sum-image">
           <img src={props.imagePath || "/images/default-event.jpg"} alt={props.title} />
         </div>
