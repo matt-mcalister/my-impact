@@ -91,6 +91,20 @@ export const markAsAttending = (participantId, eventObj) => {
   }
 }
 
+export const leaveEvent = (participantId, eventObj) => {
+  return (dispatch) => {
+    
+    delete eventObj.attendingParticipantIds[participantId]
+
+    dispatch({
+      type: actions.LEAVE_EVENT,
+      payload: eventObj
+    })
+    
+
+  }
+}
+
 export const removeAuthUser = () => {
   return {
     type: actions.REMOVE_AUTH_USER

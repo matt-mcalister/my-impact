@@ -1,13 +1,12 @@
 import React from "react"
 import { Modal } from "semantic-ui-react"
 import { connect } from "react-redux"
-import { removeSelectedEvent, markAsAttending } from "../actions"
+import { removeSelectedEvent, markAsAttending, leaveEvent } from "../actions"
 import { firebase } from "../firebase"
-import AttendeeIcon from "./AttendeeIcon"
+import EventAttendees from "./EventAttendees"
 
 const defaultState = {
   host: null,
-  attendees: null,
 }
 class EventShow extends React.Component {
   state = defaultState
@@ -18,13 +17,9 @@ class EventShow extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps){
-    if (this.props.selectedEvent &&
-      (!prevProps.selectedEvent || this.props.selectedEvent.id !== prevProps.selectedEvent.id
-        || JSON.stringify(this.props.attendees) !== JSON.stringify(prevProps.attendees))
-    ){
+  componentDidUpdate(prevProps, prevState){
+    if (this.props.selectedEvent && (!prevProps.selectedEvent || this.props.selectedEvent.id !== prevProps.selectedEvent.id)){
       this.setHost()
-      this.setAttendees()
     }
   }
 
@@ -33,39 +28,16 @@ class EventShow extends React.Component {
       .get().then( doc => this.setState({host: doc.data()}) )
   }
 
-  setAttendees = async () => {
-    const attendees = this.props.attendees
-    const attendeesArr = []
-    for (let uid in attendees) {
-      if (attendees[uid]) {
-        const attendee = await this.getAttendee(uid)
-        if (attendee){
-          attendeesArr.push(attendee)
-        }
-      }
-    }
-    if (attendeesArr.length > 0) {
-      this.setState({ attendees: attendeesArr })
-    }
-  }
-
-  getAttendee = async (uid) => {
-    const doc = await firebase.db.collection("participant").doc(uid).get()
-    if (doc.data()) {
-      return await doc.data()
-    }
-    return null
-  }
-
   handleClose = () => {
     this.setState(defaultState)
     this.props.removeSelectedEvent()
   }
 
   handleClick = () => {
-    console.log("yo");
     if (!this.props.currentUserAttending) {
       this.props.markAsAttending(this.props.uid, this.props.selectedEvent)
+    } else {
+      this.props.leaveEvent(this.props.uid, this.props.selectedEvent)
     }
   }
 
@@ -82,7 +54,6 @@ class EventShow extends React.Component {
   }
 
   render() {
-
     return (
       <Modal id="selected-event" open={!!this.props.selectedEvent} onClose={this.handleClose}>
         <div id="selected-event-img-cont" className="img-container-centered">
@@ -96,16 +67,7 @@ class EventShow extends React.Component {
             <h4>{this.props.selectedEvent && this.props.selectedEvent.location.address}</h4>
           </div>
           {this.props.selectedEvent && this.formatDescription()}
-          <div id="event-attendees">
-              Attending:
-              <div id="attendees-container">
-                {this.state.attendees ?
-                  this.state.attendees.map(a => <AttendeeIcon key={a.id} participant={a}/>)
-                  :
-                  <p>Be the first to RSVP!</p>
-                }
-              </div>
-            </div>
+          <EventAttendees />
         </div>
         <button id="attend-button" onClick={this.handleClick}>{this.props.currentUserAttending ? "Leave Event" : "Mark as Attending"}</button>
       </Modal>
@@ -116,10 +78,9 @@ class EventShow extends React.Component {
 const mapStateToProps = (state) => {
   return {
     uid: state.auth.uid,
-    attendees: state.events.all[state.events.selectedEvent] ? state.events.all[state.events.selectedEvent].attendingParticipantIds : null,
     selectedEvent: state.events.all[state.events.selectedEvent],
     currentUserAttending: !!state.events.attending[state.events.selectedEvent]
   }
 }
 
-export default connect(mapStateToProps, { removeSelectedEvent, markAsAttending })(EventShow)
+export default connect(mapStateToProps, { removeSelectedEvent, markAsAttending, leaveEvent })(EventShow)

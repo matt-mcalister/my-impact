@@ -25,13 +25,21 @@ export default function eventsReducer( eventsState = eventsStateDefault , action
         selectedEvent: null,
       }
     case actions.MARK_AS_ATTENDING:
-      let newState = {...eventsState}
-      if (newState.hosting[action.payload.id]){
-        newState.hosting[action.payload.id] = action.payload
+      let newStateAttending = {...eventsState}
+      if (newStateAttending.hosting[action.payload.id]){
+        newStateAttending.hosting[action.payload.id] = action.payload
       }
-      newState.attending[action.payload.id] = action.payload
-      newState.all[action.payload.id] = action.payload
-      return newState;
+      newStateAttending.attending[action.payload.id] = action.payload
+      newStateAttending.all[action.payload.id] = action.payload
+      return newStateAttending;
+    case actions.LEAVE_EVENT:
+      let newStateLeaving = {...eventsState}
+      if (newStateLeaving.hosting[action.payload.id]){
+        newStateLeaving.hosting[action.payload.id] = action.payload
+      }
+      delete newStateLeaving.attending[action.payload.id]
+      newStateLeaving.all[action.payload.id] = action.payload
+      return newStateLeaving;
     case actions.REMOVE_AUTH_USER:
       return { ...eventsStateDefault }
     default:
