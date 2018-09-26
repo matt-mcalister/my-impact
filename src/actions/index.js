@@ -82,26 +82,24 @@ export const markAsAttending = (participantId, eventObj) => {
       type: actions.MARK_AS_ATTENDING,
       payload: eventObj
     })
-    console.log("ID: ", eventObj.id);
-    console.log("PARTICIPANTS: ", eventObj.attendingParticipantIds);
-    console.log("NEW P_ID: ", participantId);
     firebase.db.collection('events').doc(eventObj.id).update({
       attendingParticipantIds: eventObj.attendingParticipantIds
-    }).then(console.log)
+    })
   }
 }
 
 export const leaveEvent = (participantId, eventObj) => {
   return (dispatch) => {
-    
+
     delete eventObj.attendingParticipantIds[participantId]
 
     dispatch({
       type: actions.LEAVE_EVENT,
       payload: eventObj
     })
-    
-
+    firebase.db.collection('events').doc(eventObj.id).update({
+      attendingParticipantIds: eventObj.attendingParticipantIds
+    })
   }
 }
 

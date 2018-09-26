@@ -8,6 +8,7 @@ import EventAttendees from "./EventAttendees"
 const defaultState = {
   host: null,
 }
+
 class EventShow extends React.Component {
   state = defaultState
 

@@ -6,6 +6,7 @@ class AttendeeIcon extends React.Component {
 	state = {
 		image: null,
 		name: null,
+		invalidUser: false,
 	}
 
 	componentDidMount(){
@@ -17,18 +18,25 @@ class AttendeeIcon extends React.Component {
     if (doc.data()) {
       const { image, name } = doc.data()
 			this.setState({ image, name })
-    }
+    } else {
+			this.setState({invalidUser: true})
+		}
   }
 
 	render(){
-		return (
-			<div className="attendee-icon">
-				<div className="img-container-centered">
-					<img src={this.state.image || "/images/default-user.png"} alt={this.state.name}/>
+		if (this.state.invalidUser){
+			console.log(this.props.participant);
+			return null
+		} else {
+			return (
+				<div className="attendee-icon">
+					<div className="img-container-centered">
+						<img src={this.state.image || "/images/default-user.png"} alt={this.state.name}/>
+					</div>
+					<div className="attendee-name">{this.state.name}</div>
 				</div>
-				<div className="attendee-name">{this.state.name}</div>
-			</div>
-		)
+			)
+		}
 	}
 }
 
