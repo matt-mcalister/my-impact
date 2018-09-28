@@ -103,6 +103,27 @@ export const leaveEvent = (participantId, eventObj) => {
   }
 }
 
+export const setSpotlights = () => {
+  return (dispatch) => {
+    firebase.db.collection('spotlights').get().then( payload => {
+
+      if (payload.docs && payload.docs.length > 0){
+        const all = {}
+         payload.docs.forEach(doc => {
+          if (doc.data() && doc.data().title !== "Test"){
+            all[doc.data().id] = doc.data()
+          }
+         })
+        dispatch({
+          type: actions.SET_SPOTLIGHTS,
+          payload: { all: all}
+        })
+      }
+
+    })
+  }
+}
+
 export const removeAuthUser = () => {
   return {
     type: actions.REMOVE_AUTH_USER

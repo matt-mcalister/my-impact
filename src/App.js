@@ -17,7 +17,7 @@ import EventsPage from "./components/EventsPage"
 import Home from "./components/Home"
 import Landing from "./components/Landing"
 import Privacy from "./components/Privacy"
-import Spotlight from "./components/Spotlight"
+import SpotlightsPage from "./components/SpotlightsPage"
 import Terms from "./components/Terms"
 
 class App extends Component {
@@ -77,7 +77,7 @@ class App extends Component {
           <Route exact path="/privacy" render={() => (<Privacy />)}/>
           <Route exact path="/spotlight" render={() => {
               if (this.props.participant) {
-                return (<Spotlight />)
+                return (<SpotlightsPage />)
               } else {
                 return <Redirect to="/" />
               }
