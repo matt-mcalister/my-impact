@@ -12,8 +12,11 @@ class SpotlightsPage extends React.Component {
 	render(){
 		console.log(this.props);
 		return (
-			<div className="home-wrapper logs-white-round spotlights-wrapper">
-				{this.props.spotlights.map(sp => <Spotlight key={sp.id} {...sp}/>)}
+			<div className="main-content">
+				<div className="home-wrapper logs-white-round spotlights-wrapper">
+					<h1>Spotlights</h1>
+					{this.props.spotlights.map(sp => <Spotlight key={sp.id} {...sp}/>)}
+				</div>
 			</div>
 		)
 	}

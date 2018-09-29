@@ -601,3 +601,44 @@ button.new-log-optional {
   border: none;
   border-radius: 10px;
 }
+
+/* SPOTLIGHTS */
+.spotlights-wrapper > h1 {
+  color: grey;
+  margin-right: auto;
+  margin-left: 5%;
+}
+
+.spotlights-wrapper {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 320px;
+  width: 80vw;
+}
+
+.spotlight {
+  border-radius: 5px;
+  overflow:hidden;
+  min-width:300px;
+  width: 90%;
+  margin: 5px;
+  -webkit-box-shadow: 1px 1px 0.5px 0.5px grey, -1px -1px 0.5px 0.5px grey;
+  -moz-box-shadow: 1px 1px 0.5px 0.5px grey, -1px -1px 0.5px 0.5px grey;
+  box-shadow: 1px 1px 0.5px 0.5px grey, -1px -1px 0.5px 0.5px grey;
+}
+
+.spotlight-info {
+  padding: 10px;
+}
+
+.spotlight-info > h2, h6 {
+  text-align: center;
+  margin: 0;
+}
+
+.spotlight-category {
+  color: grey;
+  font-style: italic;
+}
