@@ -343,7 +343,7 @@ button.new-log-optional {
   margin-right: 5%;
   height: 40%;
   display:grid;
-  border-radius: 50px;
+  border-radius: 15vh;
   overflow:hidden;
 }
 
@@ -351,7 +351,7 @@ button.new-log-optional {
   background-color:green;
   display: flex;
   justify-content: flex-end;
-  border-radius:50px;
+  border-radius: 15vh;
 }
 
 #progress-label-circle {
