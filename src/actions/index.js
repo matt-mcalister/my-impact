@@ -52,12 +52,18 @@ export const setEvents = (uid) => {
         const attendingEvents = {}
         const allEvents = {}
          payload.docs.forEach(doc => {
-           if (doc.data().hostId === uid) {
-             hostingEvents[doc.data().id] = doc.data()
-           } else if (doc.data().attendingParticipantIds && doc.data().attendingParticipantIds[uid]) {
-             attendingEvents[doc.data().id] = doc.data()
+           if (doc.data()){
+             const event = doc.data()
+             if (event.hostId === uid) {
+               hostingEvents[event.id] = event
+             } else if (event.attendingParticipantIds && event.attendingParticipantIds[uid]) {
+               attendingEvents[event.id] = event
+             }
+             if (!event.attendingParticipantIds) {
+               event.attendingParticipantIds = {}
+             }
+             allEvents[event.id] = event
            }
-           allEvents[doc.data().id] = doc.data()
          })
         dispatch({
           type: actions.SET_EVENTS,

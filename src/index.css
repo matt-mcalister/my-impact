@@ -511,8 +511,6 @@ button.new-log-optional {
   width: 80vw;
   padding-left: 5%;
   padding-right: 5%;
-  /* padding-top: 2.5%; */
-  /* padding-bottom: 2.5%; */
   display: grid!important;
   grid-template-rows: 2vh minmax(150px, 40%) auto 10% 1vh;
   grid-template-columns: 5% 90% 5%;
@@ -525,7 +523,6 @@ button.new-log-optional {
 
 #selected-event-img-cont {
   grid-area: top;
-  /* padding-top: 2vh; */
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -629,6 +626,19 @@ button.new-log-optional {
   box-shadow: 1px 1px 0.5px 0.5px grey, -1px -1px 0.5px 0.5px grey;
 }
 
+.spotlight-image {
+  width: 100%;
+  height: 40.5vw;
+  min-height:168.75px;
+}
+
+.spotlight-image > img{
+  min-width: 100%;
+  object-fit: cover;
+  -o-object-fit: cover;
+  min-height: 100%;
+}
+
 .spotlight-info {
   padding: 10px;
 }
@@ -641,4 +651,22 @@ button.new-log-optional {
 .spotlight-category {
   color: grey;
   font-style: italic;
+}
+
+.spotlight-link {
+  position: absolute;
+  width: 75px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.48);
+  margin-top: -40px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid white;
 }
