@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: #e4f4ff
+  background-color: #e4f4ff;
 }
 
 .main-content {
@@ -15,7 +15,7 @@ body {
 }
 
 .home-wrapper > h3 {
-  color: grey;
+  color: lightgrey;
   margin-bottom: 5px;
   margin-left: 5%;
 }
@@ -176,7 +176,7 @@ body {
 }
 
 #logs-header {
-  color: grey;
+  color: lightgrey;
   margin-bottom: 5px;
   margin-left: 5%;
   display: flex;
@@ -230,7 +230,7 @@ body {
   margin-bottom: 0;
   border: 2px solid white;
   border-top: none;
-  color: grey;
+  color: lightgrey;
   font-size: 80%;
   font-style: italic;
 }
@@ -270,7 +270,7 @@ button.new-log-optional {
   display: flex;
   align-items: center;
   padding: 3px;
-  border-bottom: 0.5px solid grey;
+  border-bottom: 0.5px solid lightgrey;
   min-height: 100px;
   height: minmax(10vh, auto);
   font-size: 90%;
@@ -293,7 +293,7 @@ button.new-log-optional {
   min-width: 40px;
   width: 4vh;
   text-align:right;
-  color: grey;
+  color: lightgrey;
 }
 
 .log-hours {
@@ -338,7 +338,7 @@ button.new-log-optional {
 #progress-bar-container {
   max-width:90%;
   width: 90%;
-  background-color: grey;
+  background-color: lightgrey;
   margin-left: 5%;
   margin-right: 5%;
   height: 40%;
@@ -369,7 +369,7 @@ button.new-log-optional {
 }
 
 #progress-remainder {
-  background-color: grey;
+  background-color: lightgrey;
   height:100%;
   color: white;
   display:flex;
@@ -411,7 +411,7 @@ button.new-log-optional {
   margin-left: 5%;
 }
 #all-events-headers > h1 {
-  color: grey;
+  color: lightgrey;
 }
 
 .details-overlay {
@@ -461,9 +461,9 @@ button.new-log-optional {
   min-width:300px;
   width: 300px;
   margin: 5px;
-  -webkit-box-shadow: 1px 1px 0.5px 0.5px grey, -1px -1px 0.5px 0.5px grey;
-  -moz-box-shadow: 1px 1px 0.5px 0.5px grey, -1px -1px 0.5px 0.5px grey;
-  box-shadow: 1px 1px 0.5px 0.5px grey, -1px -1px 0.5px 0.5px grey;
+  -webkit-box-shadow: 1px 1px 0.5px 0.5px lightgrey, -1px -1px 0.5px 0.5px lightgrey;
+  -moz-box-shadow: 1px 1px 0.5px 0.5px lightgrey, -1px -1px 0.5px 0.5px lightgrey;
+  box-shadow: 1px 1px 0.5px 0.5px lightgrey, -1px -1px 0.5px 0.5px lightgrey;
 }
 
 .event-location {
@@ -601,7 +601,7 @@ button.new-log-optional {
 
 /* SPOTLIGHTS */
 .spotlights-wrapper > h1 {
-  color: grey;
+  color: lightgrey;
   margin-right: auto;
   margin-left: 5%;
 }
@@ -621,9 +621,9 @@ button.new-log-optional {
   min-width:300px;
   width: 90%;
   margin: 5px;
-  -webkit-box-shadow: 1px 1px 0.5px 0.5px grey, -1px -1px 0.5px 0.5px grey;
-  -moz-box-shadow: 1px 1px 0.5px 0.5px grey, -1px -1px 0.5px 0.5px grey;
-  box-shadow: 1px 1px 0.5px 0.5px grey, -1px -1px 0.5px 0.5px grey;
+  -webkit-box-shadow: 1px 1px 0.5px 0.5px lightgrey, -1px -1px 0.5px 0.5px lightgrey, 1px -1px 0.5px 0.5px lightgrey, -1px 1px 0.5px 0.5px lightgrey;
+  -moz-box-shadow: 1px 1px 0.5px 0.5px lightgrey, -1px -1px 0.5px 0.5px lightgrey, 1px -1px 0.5px 0.5px lightgrey, -1px 1px 0.5px 0.5px lightgrey;
+  box-shadow: 1px 1px 0.5px 0.5px lightgrey, -1px -1px 0.5px 0.5px lightgrey, 1px -1px 0.5px 0.5px lightgrey, -1px 1px 0.5px 0.5px lightgrey;
 }
 
 .spotlight-image {
@@ -649,7 +649,7 @@ button.new-log-optional {
 }
 
 .spotlight-category {
-  color: grey;
+  color: lightgrey;
   font-style: italic;
 }
 
@@ -669,4 +669,43 @@ button.new-log-optional {
   color: white;
   border-radius: 5px;
   border: 1px solid white;
+}
+
+/* SETTINGS */
+
+.user-info > h2 {
+  color: lightgrey;
+  margin-right: auto;
+  margin-left: 5%;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-img {
+  min-height: 100px;
+  min-width: 100px;
+  height: 30vh;
+  width: 30vh;
+  border-radius: 100%;
+}
+
+#your-pact {
+  min-height: 100px;
+  min-width: 100px;
+  height: 30vh;
+  width: 30vh;
+  border-radius: 30%;
+  background-color: #e4f4ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  -webkit-box-shadow: 2px 2px 0.2px 0.2px lightgrey, -2px -2px 0.2px 0.2px lightgrey, 2px -2px 0.2px 0.2px lightgrey, -2px 2px 0.2px 0.2px lightgrey;
+  -moz-box-shadow: 2px 2px 0.2px 0.2px lightgrey, -2px -2px 0.2px 0.2px lightgrey, 2px -2px 0.2px 0.2px lightgrey, -2px 2px 0.2px 0.2px lightgrey;
+  box-shadow: 2px 2px 0.2px 0.2px lightgrey, -2px -2px 0.2px 0.2px lightgrey, 2px -2px 0.2px 0.2px lightgrey, -2px 2px 0.2px 0.2px lightgrey;
+
 }
