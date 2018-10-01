@@ -14,7 +14,7 @@ const visualStateDefault = {
       { as: "a", content: "Privacy Policy", key: "privacy", route: "/privacy" },
       { as: "a", content: "Terms of Service", key: "terms", route: "/terms" }
     ]
-  }
+  },
 }
 
 export default function visualReducer(visualState = visualStateDefault, action){

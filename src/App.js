@@ -23,7 +23,7 @@ import Terms from "./components/Terms"
 class App extends Component {
 
   componentDidMount() {
-    firebase.auth.onAuthStateChanged(this.handleAuthStateChanged)
+    this.authListener = firebase.auth.onAuthStateChanged(this.handleAuthStateChanged)
   }
 
   handleAuthStateChanged = (authUser) => {
@@ -34,41 +34,45 @@ class App extends Component {
     }
   }
 
+  componentWillUnmount(){
+    this.authListener()
+  }
+
 
   render() {
     return (
       <NavBar>
         <Switch>
           <Route exact path="/login" render={() => {
-              if (!this.props.participant) {
+              if (!firebase.isAuthenticated()) {
                 return <LogIn />
               } else {
                 return <Redirect to="/home" />
               }
             } }/>
         <Route exact path="/signup" render={() => {
-            if (!this.props.participant) {
+            if (!firebase.isAuthenticated()) {
               return <SignUp />
             } else {
                 return <Redirect to="/home" />
             }
             } }/>
           <Route exact path="/settings" render={() => {
-              if (this.props.participant) {
+              if (firebase.isAuthenticated()) {
                 return (<AccountSettings />)
               } else {
                 return <Redirect to="/" />
               }
             } }/>
           <Route exact path="/events" render={() => {
-              if (this.props.participant) {
+              if (firebase.isAuthenticated()) {
                 return (<EventsPage />)
               } else {
                 return <Redirect to="/" />
               }
             } }/>
           <Route exact path="/home" render={() => {
-              if (this.props.participant) {
+              if (firebase.isAuthenticated()) {
                 return (<Home />)
               } else {
                 return <Redirect to="/" />
@@ -76,7 +80,7 @@ class App extends Component {
             } }/>
           <Route exact path="/privacy" render={() => (<Privacy />)}/>
           <Route exact path="/spotlight" render={() => {
-              if (this.props.participant) {
+              if (firebase.isAuthenticated()) {
                 return (<SpotlightsPage />)
               } else {
                 return <Redirect to="/" />
@@ -84,7 +88,7 @@ class App extends Component {
             } }/>
           <Route exact path="/terms" render={() => (<Terms />)}/>
         <Route exact path="/" render={() => {
-            if (!this.props.participant) {
+            if (!firebase.isAuthenticated()) {
               return <Landing />
             } else {
                 return <Redirect to="/home" />
@@ -101,8 +105,9 @@ class App extends Component {
           <img id="capitolImg" src="/images/onboarding-extra-wide.png" alt="The US Capitol"/>
         </div>)}
       </NavBar>
-    );
+      );
+    // }
   }
 }
 
-export default connect((state) => ({ participant: state.auth.participant, showCapitol: state.visual.showCapitol, router: state.router }),{ removeAuthUser, setAuthUser })(App);
+export default connect((state) => ({ participant: state.auth.participant, showCapitol: state.visual.showCapitol, router: state.router, popUrl: state.visual.popUrl }),{ removeAuthUser, setAuthUser })(App);

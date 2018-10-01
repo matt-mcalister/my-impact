@@ -12,7 +12,16 @@ const db = firebase.firestore();
 
 db.settings({timestampsInSnapshots: true});
 
+
+const storageKey = 'FBDBCU';
+
+const isAuthenticated = () => {
+  return !!auth.currentUser || !!localStorage.getItem(storageKey);
+};
+
 export {
   auth,
-  db
+  db,
+  storageKey,
+  isAuthenticated
 };
