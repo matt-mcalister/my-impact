@@ -15,7 +15,7 @@ body {
 }
 
 .home-wrapper > h3 {
-  color: lightgrey;
+  color: grey;
   margin-bottom: 5px;
   margin-left: 5%;
 }
@@ -176,7 +176,7 @@ body {
 }
 
 #logs-header {
-  color: lightgrey;
+  color: grey;
   margin-bottom: 5px;
   margin-left: 5%;
   display: flex;
@@ -230,7 +230,7 @@ body {
   margin-bottom: 0;
   border: 2px solid white;
   border-top: none;
-  color: lightgrey;
+  color: grey;
   font-size: 80%;
   font-style: italic;
 }
@@ -293,7 +293,7 @@ button.new-log-optional {
   min-width: 40px;
   width: 4vh;
   text-align:right;
-  color: lightgrey;
+  color: grey;
 }
 
 .log-hours {
@@ -338,7 +338,7 @@ button.new-log-optional {
 #progress-bar-container {
   max-width:90%;
   width: 90%;
-  background-color: lightgrey;
+  background-color: grey;
   margin-left: 5%;
   margin-right: 5%;
   height: 40%;
@@ -369,7 +369,7 @@ button.new-log-optional {
 }
 
 #progress-remainder {
-  background-color: lightgrey;
+  background-color: grey;
   height:100%;
   color: white;
   display:flex;
@@ -411,7 +411,7 @@ button.new-log-optional {
   margin-left: 5%;
 }
 #all-events-headers > h1 {
-  color: lightgrey;
+  color: grey;
 }
 
 .details-overlay {
@@ -601,7 +601,7 @@ button.new-log-optional {
 
 /* SPOTLIGHTS */
 .spotlights-wrapper > h1 {
-  color: lightgrey;
+  color: grey;
   margin-right: auto;
   margin-left: 5%;
 }
@@ -649,7 +649,7 @@ button.new-log-optional {
 }
 
 .spotlight-category {
-  color: lightgrey;
+  color: grey;
   font-style: italic;
 }
 
@@ -674,12 +674,14 @@ button.new-log-optional {
 /* SETTINGS */
 
 .user-info > h2 {
-  color: lightgrey;
+  color: grey;
   margin-right: auto;
   margin-left: 5%;
 }
 
 .user-info {
+  min-width: 300px;
+  width: 80vw;
   display: flex;
   flex-direction: column;
   align-items: center;
