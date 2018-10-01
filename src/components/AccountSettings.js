@@ -1,5 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
+import { updateGoal } from "../actions"
 
 
 const countdownInDays = (goal) => {
@@ -10,13 +11,14 @@ class AccountSettings extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			goal: this.props.goal || 50,
+			goal: props.goal ? props.goal : 50,
 			editing: false,
 		}
 	}
+	_input: ?HTMLInputElement;
 
 	handleChange = (e) => {
-		this.setState({goal: e.target.value})
+		this.setState({goal: parseInt(e.target.value, 10)}, () => this._input.focus())
 	}
 
 	edit = () => {
@@ -24,17 +26,31 @@ class AccountSettings extends React.Component {
 	}
 
 	save = () => {
+		this.props.updateGoal(this.state.goal, this.props.id)
 		this.setState({editing: false})
+	}
+
+	componentDidUpdate(prevProps, prevState){
+		if(prevProps.goal !== this.props.goal){
+			this.setState({
+				goal: this.props.goal,
+			})
+		}
 	}
 
 	renderPact(){
 		if (this.state.editing){
-			return (<input id="goal-input" type="number" value={this.state.goal} onChange={this.handleChange} />)
+			return (
+				<React.Fragment>
+					<input id="goal-input" type="number" ref={c => (this._input = c)} autoFocus={true} value={this.state.goal} onChange={this.handleChange} />
+					<button className="change-pact" onClick={this.save}>Save Pact</button>
+				</React.Fragment>
+			)
 		} else {
 			return (
 				<React.Fragment>
-					<h3>{this.state.goal} hours</h3>
-					<h6 onClick={this.edit}>Change</h6>
+					<h1>{this.state.goal} hours</h1>
+					<button className="change-pact" onClick={this.edit}>Change</button>
 				</React.Fragment>
 			)
 		}
@@ -46,7 +62,7 @@ class AccountSettings extends React.Component {
 	}
 
 	till2019(){
-		const weeks = countdownInDays("January 12, 2019 00:00:00") / 7
+		const weeks = countdownInDays("January 1, 2019 00:00:00") / 7
 		return Math.round(this.state.goal / weeks)
 	}
 
@@ -64,6 +80,7 @@ class AccountSettings extends React.Component {
 						<img src={this.props.image} alt={this.props.name} />
 					</div>
 					<h1>{this.props.name}</h1>
+					<hr />
 						<h3>Set your Pact</h3>
 						<div id="your-pact">
 							{this.renderPact()}
@@ -72,11 +89,10 @@ class AccountSettings extends React.Component {
 						<p>{this.tillMidterm()}hrs/week till 2018 midterms</p>
 						<p>{this.till2019()}hrs/week for the rest of 2018</p>
 						<p>{this.till2020Election()}hrs/month until the 2020 Presidential Elections</p>
-						<button id="save-pact" onClick={this.save}>Save Pact</button>
 				</div>
       </div>
       )
 	}
 }
 
-export default connect(state => ({ ...state.auth.participant }) )(AccountSettings)
+export default connect(state => ({ ...state.auth.participant }), { updateGoal })(AccountSettings)

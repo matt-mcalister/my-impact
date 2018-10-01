@@ -681,10 +681,10 @@ button.new-log-optional {
 
 .user-info {
   min-width: 300px;
-  width: 80vw;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 30px;
 }
 
 .user-img {
@@ -693,6 +693,11 @@ button.new-log-optional {
   height: 30vh;
   width: 30vh;
   border-radius: 100%;
+}
+
+.user-info > hr {
+  width: 90%;
+  border: 1px solid grey;
 }
 
 #your-pact {
@@ -709,5 +714,12 @@ button.new-log-optional {
   -webkit-box-shadow: 2px 2px 0.2px 0.2px lightgrey, -2px -2px 0.2px 0.2px lightgrey, 2px -2px 0.2px 0.2px lightgrey, -2px 2px 0.2px 0.2px lightgrey;
   -moz-box-shadow: 2px 2px 0.2px 0.2px lightgrey, -2px -2px 0.2px 0.2px lightgrey, 2px -2px 0.2px 0.2px lightgrey, -2px 2px 0.2px 0.2px lightgrey;
   box-shadow: 2px 2px 0.2px 0.2px lightgrey, -2px -2px 0.2px 0.2px lightgrey, 2px -2px 0.2px 0.2px lightgrey, -2px 2px 0.2px 0.2px lightgrey;
+}
 
+#goal-input {
+  border: 0;
+  margin: 10px;
+  font-size: 200%;
+  width: 70%;
+  text-align: center;
 }

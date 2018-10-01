@@ -162,6 +162,19 @@ export const removeParticipant = () => {
   }
 }
 
+export const updateGoal = (goal, id) => {
+  return (dispatch) => {
+
+    firebase.db.collection('participant').doc(id).update({
+      goal: goal
+    }).then(console.log)
+    dispatch({
+      type: actions.UPDATE_GOAL,
+      payload: goal,
+    })
+  }
+}
+
 export const redirect = (path) => (dispatch) => {
   dispatch(push(path))
 }
