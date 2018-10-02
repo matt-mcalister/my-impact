@@ -1,5 +1,6 @@
 import React from "react"
 import AvatarOption from "./AvatarOption"
+import { Icon } from "semantic-ui-react"
 import { firebase } from "../firebase"
 import { connect } from "react-redux"
 
@@ -31,6 +32,12 @@ class PickAvatar extends React.Component {
 			})
   }
 
+	pickAvatar = (url) => {
+		this.setState({
+			avatar: url
+		})
+	}
+
 	render(){
 		return (
       <div className="main-content">
@@ -39,8 +46,13 @@ class PickAvatar extends React.Component {
           <div className="img-container-centered user-img" >
             <img src={this.state.avatar} alt={this.props.name} style={{position: "inherit"}}/>
           </div>
+					<div id="set-photo">
+						<button><Icon name="photo" /></button>
+						<button><Icon name="images outline" /></button>
+					</div>
+					<button id="save-photo">Save</button>
           <div id='avatar-options'>
-            {this.state.avatarImages.map(imgUrl => <AvatarOption key={imgUrl} image={imgUrl} />)}
+            {this.state.avatarImages.map(imgUrl => <AvatarOption key={imgUrl} pickAvatar={this.pickAvatar} image={imgUrl} />)}
           </div>
         </div>
       </div>
