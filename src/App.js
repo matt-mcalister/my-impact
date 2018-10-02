@@ -19,6 +19,7 @@ import Landing from "./components/Landing"
 import Privacy from "./components/Privacy"
 import SpotlightsPage from "./components/SpotlightsPage"
 import Terms from "./components/Terms"
+import PickAvatar from "./components/PickAvatar"
 
 class App extends Component {
 
@@ -60,6 +61,13 @@ class App extends Component {
           <Route exact path="/settings" render={() => {
               if (firebase.isAuthenticated()) {
                 return (<AccountSettings />)
+              } else {
+                return <Redirect to="/" />
+              }
+            } }/>
+          <Route exact path="/settings/avatar" render={() => {
+              if (firebase.isAuthenticated()) {
+                return (<PickAvatar />)
               } else {
                 return <Redirect to="/" />
               }

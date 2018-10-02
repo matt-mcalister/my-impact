@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Icon } from "semantic-ui-react"
-import { updateGoal } from "../actions"
+import { updateGoal, redirect } from "../actions"
 
 
 const countdownInDays = (goal) => {
@@ -29,6 +29,11 @@ class AccountSettings extends React.Component {
 	save = () => {
 		this.props.updateGoal(this.state.goal, this.props.id)
 		this.setState({editing: false})
+	}
+
+
+	updateImage = () => {
+		this.props.redirect("/settings/avatar")
 	}
 
 	componentDidUpdate(prevProps, prevState){
@@ -77,11 +82,11 @@ class AccountSettings extends React.Component {
       <div className="main-content">
         <div className="logs-white-round user-info">
 					<h2>Settings</h2>
-					<div className="img-container-centered user-img">
+					<div className="img-container-centered user-img" onClick={this.updateImage}>
 						<img src={this.props.image} alt={this.props.name} />
 						<div className='change-user-image'>
 							Change Photo
-							<Icon name="photo" color="white" />
+							<Icon name="photo" />
 						</div>
 					</div>
 					<h1>{this.props.name}</h1>
@@ -100,4 +105,4 @@ class AccountSettings extends React.Component {
 	}
 }
 
-export default connect(state => ({ ...state.auth.participant }), { updateGoal })(AccountSettings)
+export default connect(state => ({ ...state.auth.participant }), { updateGoal, redirect })(AccountSettings)

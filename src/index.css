@@ -745,3 +745,37 @@ button.new-log-optional {
   justify-content: center;
   color: white;
 }
+
+/* PICK AVATAR */
+
+.pick-avatar {
+  min-width: 300px;
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pick-avatar > h2 {
+  color: grey;
+  margin-right: auto;
+  margin-left: 5%;
+}
+
+#avatar-options {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  display: -ms-flexbox;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.avatar-option {
+  width: 150px;
+}
+
+.avatar-option > img {
+  width: 100%;
+}
