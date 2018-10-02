@@ -162,12 +162,26 @@ export const removeParticipant = () => {
   }
 }
 
+export const updateImage = (image, id) => {
+  return (dispatch) => {
+
+    firebase.db.collection('participant').doc(id).update({
+      image: image
+    })
+    dispatch({
+      type: actions.UPDATE_IMAGE,
+      payload: image,
+    })
+  }
+}
+
+
 export const updateGoal = (goal, id) => {
   return (dispatch) => {
 
     firebase.db.collection('participant').doc(id).update({
       goal: goal
-    }).then(console.log)
+    })
     dispatch({
       type: actions.UPDATE_GOAL,
       payload: goal,

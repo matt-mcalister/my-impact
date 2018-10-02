@@ -32,6 +32,14 @@ export default function authReducer( authState = authStateDefault , action ){
           goal: action.payload,
         }
       }
+    case actions.UPDATE_IMAGE:
+      return {
+        ...authState,
+        participant: {
+          ...authState.participant,
+          image: action.payload,
+        }
+      }
     case actions.REMOVE_AUTH_USER:
       return { ...authStateDefault }
     default:
