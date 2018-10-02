@@ -688,11 +688,12 @@ button.new-log-optional {
 }
 
 .user-img {
-  min-height: 100px;
-  min-width: 100px;
+  min-height: 200px;
+  min-width: 200px;
   height: 30vh;
   width: 30vh;
   border-radius: 100%;
+  cursor: pointer;
 }
 
 .user-info > hr {
@@ -722,4 +723,25 @@ button.new-log-optional {
   font-size: 200%;
   width: 70%;
   text-align: center;
+}
+
+.user-img > img {
+  position: relative;
+  right: -200px;
+}
+
+.change-user-image {
+  position: relative;
+  background-color: rgba(0,0,0,0.35);
+  top: 35%;
+  left:-50%;
+  min-height: 30%;
+  min-width: 400px;
+  height: 6vh;
+  width: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }

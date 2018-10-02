@@ -1,5 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
+import { Icon } from "semantic-ui-react"
 import { updateGoal } from "../actions"
 
 
@@ -78,6 +79,10 @@ class AccountSettings extends React.Component {
 					<h2>Settings</h2>
 					<div className="img-container-centered user-img">
 						<img src={this.props.image} alt={this.props.name} />
+						<div className='change-user-image'>
+							Change Photo
+							<Icon name="photo" color="white" />
+						</div>
 					</div>
 					<h1>{this.props.name}</h1>
 					<hr />
