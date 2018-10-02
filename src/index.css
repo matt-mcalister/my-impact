@@ -803,7 +803,7 @@ button.new-log-optional {
   align-items: center;
 }
 
-#set-photo > button {
+.upload-button {
   width: 48%;
   margin-left: 1%;
   margin-right: 1%;
@@ -811,6 +811,9 @@ button.new-log-optional {
   border:none;
   background-color: lightgrey;
   border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #save-photo {
