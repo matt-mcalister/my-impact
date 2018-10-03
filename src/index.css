@@ -529,9 +529,12 @@ button.new-log-optional {
   padding-left: 5%;
   padding-right: 5%;
   display: grid!important;
-  grid-template-rows: 2vh minmax(150px, 40%) auto 10% 1vh;
+  grid-template-rows: 2vh minmax(200px, 50%) auto 10% 1vh;
   grid-template-columns: 5% 90% 5%;
-  grid-template-areas: "mt mt mt" "ml top mr" "ml center mr" "ml bottom mr" "mb mb mb"
+  grid-template-areas: "mt mt mt" "ml top mr" "ml center mr" "ml bottom mr" "mb mb mb";
+  -ms-grid-rows: 2vh minmax(200px, 50%) auto 10% 1vh;
+  -ms-grid-columns: 5% 90% 5%;
+  -ms-grid-areas: "mt mt mt" "ml top mr" "ml center mr" "ml bottom mr" "mb mb mb";
 }
 
 #selected-event *::-webkit-scrollbar {
@@ -540,6 +543,7 @@ button.new-log-optional {
 
 #selected-event-img-cont {
   grid-area: top;
+  -ms-grid-area: top;
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -554,6 +558,7 @@ button.new-log-optional {
 
 #selected-event-info {
   grid-area: center;
+  -ms-grid-area: center;
   max-height: 100%;
   overflow-y: scroll;
   word-wrap: break-word;
@@ -608,6 +613,7 @@ button.new-log-optional {
 
 #attend-button {
   grid-area: bottom;
+  -ms-grid-area: bottom;
   background-color: #2b5b87;
   color: white;
   height: 80%;

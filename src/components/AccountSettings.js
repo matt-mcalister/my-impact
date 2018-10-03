@@ -19,7 +19,8 @@ class AccountSettings extends React.Component {
 	_input: ?HTMLInputElement;
 
 	handleChange = (e) => {
-		this.setState({goal: parseInt(e.target.value, 10)}, () => this._input.focus())
+		const goal = parseInt(e.target.value, 10) || ""
+		this.setState({ goal }, () => this._input.focus())
 	}
 
 	edit = () => {

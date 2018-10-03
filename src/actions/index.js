@@ -45,6 +45,7 @@ export const createAuthUser = ({ name, username, email, password }) => {
       .then(resp => {
         const newParticipant = {
           id: resp.user.uid,
+          attendingEventIds: {},
           name,
           username,
           goal: 50,
@@ -116,15 +117,23 @@ export const setEvents = (uid) => {
   }
 }
 
-export const markAsAttending = (participantId, eventObj) => {
+export const markAsAttending = (participant, eventObj) => {
   return (dispatch) => {
     if (!eventObj.attendingParticipantIds) {
       eventObj.attendingParticipantIds = {}
     }
     eventObj.attendingParticipantIds = {
       ...eventObj.attendingParticipantIds,
-      [participantId]: true,
+      [participant.id]: true,
     }
+    if (!participant.attendingEventIds){
+      participant.attendingEventIds = {}
+    }
+    participant.attendingEventIds = {
+      ...participant.attendingEventIds,
+      [eventObj.id]: true,
+    }
+
     dispatch({
       type: actions.MARK_AS_ATTENDING,
       payload: eventObj
@@ -132,13 +141,17 @@ export const markAsAttending = (participantId, eventObj) => {
     firebase.db.collection('events').doc(eventObj.id).update({
       attendingParticipantIds: eventObj.attendingParticipantIds
     })
+    firebase.db.collection('participant').doc(participant.id).update({
+      attendingEventIds: participant.attendingEventIds
+    })
   }
 }
 
-export const leaveEvent = (participantId, eventObj) => {
+export const leaveEvent = (participant, eventObj) => {
   return (dispatch) => {
 
-    delete eventObj.attendingParticipantIds[participantId]
+    delete eventObj.attendingParticipantIds[participant.id]
+    delete participant.attendingEventIds[eventObj.id]
 
     dispatch({
       type: actions.LEAVE_EVENT,
@@ -146,6 +159,9 @@ export const leaveEvent = (participantId, eventObj) => {
     })
     firebase.db.collection('events').doc(eventObj.id).update({
       attendingParticipantIds: eventObj.attendingParticipantIds
+    })
+    firebase.db.collection('participant').doc(participant.id).update({
+      attendingEventIds: participant.attendingEventIds
     })
   }
 }
@@ -239,6 +255,13 @@ export const showCapitol = () => {
 export const hideCapitol = () => {
   return {
     type: actions.HIDE_CAPITOL,
+  }
+}
+
+export const catchError = (error) => {
+  return {
+    type: actions.AUTH_ERROR,
+    payload: error,
   }
 }
 

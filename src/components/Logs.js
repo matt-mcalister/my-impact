@@ -26,7 +26,7 @@ const Logs = (props) => {
         {props.logs.length === 0 &&
           <div id="no-logs">
             <p>You haven't logged any hours yet!<br />Click the <Icon name="plus circle"/> in the top right to start tracking your Pact.</p>
-            <p>Not sure where to start?<br />Explore the <Link to="/spotlight">Spotlight</Link> and <Link to="/events">Events</Link> pages to see ways you can get involved and reach your pact.</p>
+            <p>Not sure where to start?<br />Explore the <Link to="/spotlights">Spotlight</Link> and <Link to="/events">Events</Link> pages to see ways you can get involved and reach your pact.</p>
           </div>
         }
 			</div>

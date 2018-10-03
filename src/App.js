@@ -87,7 +87,7 @@ class App extends Component {
               }
             } }/>
           <Route exact path="/privacy" render={() => (<Privacy />)}/>
-          <Route exact path="/spotlight" render={() => {
+          <Route exact path="/spotlights" render={() => {
               if (firebase.isAuthenticated()) {
                 return (<SpotlightsPage />)
               } else {
@@ -110,7 +110,7 @@ class App extends Component {
             }
       } }/>
           <Route exact path="/:catch" render={() => {
-            return (<div>Whoops!</div>)
+            return (<Redirect to="/" />)
           }} />
         </Switch>
           {this.props.showCapitol && (<div id="capitolImgContainer" style={{

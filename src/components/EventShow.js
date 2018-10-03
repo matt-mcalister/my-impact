@@ -36,9 +36,9 @@ class EventShow extends React.Component {
 
   handleClick = () => {
     if (!this.props.currentUserAttending) {
-      this.props.markAsAttending(this.props.uid, this.props.selectedEvent)
+      this.props.markAsAttending(this.props.participant, this.props.selectedEvent)
     } else {
-      this.props.leaveEvent(this.props.uid, this.props.selectedEvent)
+      this.props.leaveEvent(this.props.participant, this.props.selectedEvent)
     }
   }
 
@@ -78,7 +78,7 @@ class EventShow extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    uid: state.auth.uid,
+    participant: state.auth.participant,
     selectedEvent: state.events.all[state.events.selectedEvent],
     currentUserAttending: !!state.events.attending[state.events.selectedEvent]
   }

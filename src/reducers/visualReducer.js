@@ -27,7 +27,7 @@ export default function visualReducer(visualState = visualStateDefault, action){
           left: [
           	{ as: "a", content: "Home", key: "home", route: "/home" },
           	{ as: "a", content: "Events", key: "events", route: "/events" },
-          	{ as: "a", content: "Spotlight", key: "spotlight", route: "/spotlight" },
+          	{ as: "a", content: "Spotlights", key: "spotlight", route: "/spotlights" },
             { as: "a", content: "About", key: "about", route: "/about" },
           ],
           right: [
