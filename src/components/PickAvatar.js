@@ -80,7 +80,6 @@ class PickAvatar extends React.Component {
             <img src={this.state.avatar} alt={this.props.name} style={{position: "inherit"}}/>
           </div>
 					<div id="set-photo">
-						<button className="upload-button"><Icon name="photo" /></button>
 						<label className="upload-button">
 							<Icon name="images outline" />
 							<FileUploader
