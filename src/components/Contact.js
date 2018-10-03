@@ -26,9 +26,6 @@ class Contact extends React.Component {
   }
 
   render(){
-    if (this.state.open) {
-      console.log("yo");
-    }
     return (
       <Popup
         trigger={<Menu.Item as='a' content='Contact' key='contact' />}

@@ -1,7 +1,7 @@
 import React from "react"
 import { Container, Button } from 'semantic-ui-react'
 import { connect } from "react-redux"
-import { redirect } from "../actions"
+import { redirect, showCapitol, hideCapitol } from "../actions"
 
 const buttonStyle = {
   backgroundColor: "#2f649c",
@@ -35,7 +35,7 @@ const LandingMobile = (props) => {
       <div className="over-capitol" style={{width: props.innerWidth, height: "80vh"}}>
         <iframe title="ImPACT Video" id="aboutVideo" src="https://player.vimeo.com/video/278060639" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen={true}></iframe>
         <div id="login-download">
-          {<AuthButtons />}
+          {!props.about && <AuthButtons />}
           <a id="itunes-link" href="https://itunes.apple.com/us/app/my-impact/id1397266194?mt=8"><img id="appStore" src="https://get.google.com/apptips/images/app-store.svg" alt="Download on the App Store"/></a>
         </div>
       </div>
@@ -62,7 +62,7 @@ const LandingDesktop = (props) => {
         <div className="over-capitol" style={{width: props.capitolWidth}}>
           <iframe title="ImPACT Video" id="aboutVideo" src="https://player.vimeo.com/video/278060639" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen={true}></iframe>
           <div id="login-download">
-            {<AuthButtons />}
+            {!props.about && <AuthButtons />}
             <a id="itunes-link" href="https://itunes.apple.com/us/app/my-impact/id1397266194?mt=8"><img id="appStore" src="https://get.google.com/apptips/images/app-store.svg" alt="Download on the App Store"/></a>
           </div>
         </div>
@@ -89,10 +89,20 @@ class Landing extends React.Component {
   }
 
   componentDidMount(){
+    this.props.showCapitol()
     window.addEventListener("resize", this.updateSize)
   }
 
+  componentDidUpdate(){
+    if (this.props.participant) {
+      this.props.showCapitol()
+    }
+  }
+
   componentWillUnmount(){
+    if (this.props.participant){
+      this.props.hideCapitol()
+    }
     window.removeEventListener("resize", this.updateSize)
   }
 
@@ -100,12 +110,12 @@ class Landing extends React.Component {
       const capitolWidth = (this.state.innerHeight * 73/100)
 
       if (this.state.innerWidth > capitolWidth + 300) {
-        return <LandingDesktop capitolWidth={capitolWidth} {...this.state} />
+        return <LandingDesktop about={this.props.about} capitolWidth={capitolWidth} {...this.state} />
       } else {
-        return <LandingMobile capitolWidth={capitolWidth} {...this.state} />
+        return <LandingMobile about={this.props.about} capitolWidth={capitolWidth} {...this.state} />
       }
   }
 }
 
 
-export default Landing
+export default connect(state => ({participant: state.auth.participant}), { showCapitol, hideCapitol })(Landing)

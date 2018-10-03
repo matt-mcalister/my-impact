@@ -97,9 +97,16 @@ class App extends Component {
           <Route exact path="/terms" render={() => (<Terms />)}/>
         <Route exact path="/" render={() => {
             if (!firebase.isAuthenticated()) {
-              return <Landing />
+              return <Landing about={false}/>
             } else {
                 return <Redirect to="/home" />
+            }
+      } }/>
+        <Route exact path="/about" render={() => {
+            if (firebase.isAuthenticated()) {
+              return <Landing about={true}/>
+            } else {
+                return <Redirect to="/" />
             }
       } }/>
           <Route exact path="/:catch" render={() => {

@@ -10,7 +10,6 @@ class SpotlightsPage extends React.Component {
 	}
 
 	render(){
-		console.log(this.props);
 		return (
 			<div className="main-content">
 				<div className="home-wrapper logs-white-round spotlights-wrapper">

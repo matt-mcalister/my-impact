@@ -28,6 +28,7 @@ export default function visualReducer(visualState = visualStateDefault, action){
           	{ as: "a", content: "Home", key: "home", route: "/home" },
           	{ as: "a", content: "Events", key: "events", route: "/events" },
           	{ as: "a", content: "Spotlight", key: "spotlight", route: "/spotlight" },
+            { as: "a", content: "About", key: "about", route: "/about" },
           ],
           right: [
             { as: "a", content: "Account Settings", key: "account", route: "/settings" },
@@ -38,6 +39,16 @@ export default function visualReducer(visualState = visualStateDefault, action){
           ]
         }
       };
+    case (actions.SHOW_CAPITOL):
+      return {
+        ...visualState,
+        showCapitol: true,
+      }
+    case (actions.HIDE_CAPITOL):
+      return {
+        ...visualState,
+        showCapitol: false,
+      }
     case (actions.REMOVE_AUTH_USER):
       return { ...visualStateDefault };
     default:

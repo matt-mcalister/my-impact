@@ -80,8 +80,7 @@ export const addLog = (log, uid) => {
       payload: log,
     })
     const newLogRef = firebase.db.collection('participant').doc(uid).collection('entries').doc()
-    console.log("NEW REF ID: ", newLogRef.id);
-    newLogRef.set({...log, id: newLogRef.id}).then(() => dispatch({ type: actions.ADD_ID_TO_LOG, payload: newLogRef.id}) ).catch(console.log)
+    newLogRef.set({...log, id: newLogRef.id}).then(() => dispatch({ type: actions.ADD_ID_TO_LOG, payload: newLogRef.id}) )
   }
 }
 
@@ -228,6 +227,18 @@ export const updateGoal = (goal, id) => {
       type: actions.UPDATE_GOAL,
       payload: goal,
     })
+  }
+}
+
+export const showCapitol = () => {
+  return {
+    type: actions.SHOW_CAPITOL,
+  }
+}
+
+export const hideCapitol = () => {
+  return {
+    type: actions.HIDE_CAPITOL,
   }
 }
 

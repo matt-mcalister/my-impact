@@ -25,7 +25,6 @@ class AttendeeIcon extends React.Component {
 
 	render(){
 		if (this.state.invalidUser){
-			console.log(this.props.participant);
 			return null
 		} else {
 			return (

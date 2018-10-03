@@ -26,7 +26,6 @@ class DatePerformed extends React.Component {
   handleChange = (e) => {
 		if (this.isValidDate(e.target.value)){
 			const datePerformed = new Date(e.target.value)
-			console.log(datePerformed);
 	    this.setState({
 	      datePerformed: datePerformed,
 	    })
