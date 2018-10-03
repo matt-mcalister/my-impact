@@ -352,12 +352,14 @@ button.new-log-optional {
   margin-left: 5%;
   margin-right: 5%;
   height: 40%;
-  display:grid;
+  display:inline-flex;
+  flex-direction:row-reverse;
   border-radius: 15vh;
   overflow:hidden;
 }
 
 #progress-so-far {
+  z-index:10;
   background-color:green;
   display: flex;
   justify-content: flex-end;
@@ -379,8 +381,13 @@ button.new-log-optional {
 }
 
 #progress-remainder {
+  border-radius:100%;
+  min-width: 40px;
+  width: 12vh;
+  min-height: 40px;
+  height: 12vh;
+  position:absolute;
   background-color: grey;
-  height:100%;
   color: white;
   display:flex;
   -ms-align-items: center;

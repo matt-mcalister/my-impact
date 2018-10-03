@@ -6,19 +6,18 @@ const ProgressBar = (props) => {
 		const hours = props.hours || 0
 		const goal = props.goal || 50
 		const percentage = hours/goal
-		let progressBarCont = {
-			gridTemplateColumns: `minmax(12vh, ${percentage*100}%) auto minmax(5%, 12vh)`
-		}
+		const soFarStyle = {width: `${percentage*100}%`}
+		const separatorStyle = {width: `${(1-percentage)*100}%`}
 		return (
 		<div className="home-wrapper">
 			<h3>PROGRESS</h3>
 			<div id="progress-container" className="logs-white-round">
 				<h1>{parseInt(percentage*100, 10)}% complete</h1>
-				<div id="progress-bar-container" style={progressBarCont}>
-					<div id="progress-so-far">
+				<div id="progress-bar-container" >
+					<div id="progress-separator" style={separatorStyle}/>
+					<div id="progress-so-far" style={soFarStyle}>
 						<div id="progress-label-circle">{hours}h</div>
 					</div>
-					<div id="progress-separator" />
 					<div id="progress-remainder">{goal}h</div>
 				</div>
 			</div>
