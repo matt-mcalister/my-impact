@@ -11,7 +11,7 @@ class PickAvatar extends React.Component {
 	constructor(props){
 		super(props)
     this.state = {
-      avatar: props.image,
+      avatar: props.image || "/images/default-user.png",
       avatarImages: [],
 			filename: '',
 			isUploading: false,
@@ -71,7 +71,6 @@ class PickAvatar extends React.Component {
 	}
 
 	render(){
-		console.log("FROM PROPS: ", this.props.image)
 		return (
       <div className="main-content">
         <div className="logs-white-round pick-avatar">
@@ -79,6 +78,7 @@ class PickAvatar extends React.Component {
           <div className="img-container-centered user-img" >
             <img src={this.state.avatar} alt={this.props.name} style={{position: "inherit"}}/>
           </div>
+					<h3>Upload and image or pick an avatar below!</h3>
 					<div id="set-photo">
 						<label className="upload-button">
 							<Icon name="images outline" />

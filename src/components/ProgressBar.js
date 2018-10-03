@@ -3,8 +3,9 @@ import { connect } from "react-redux"
 
 
 const ProgressBar = (props) => {
-	if (props.hours) {
-		const percentage = props.hours/props.goal
+		const hours = props.hours || 0
+		const goal = props.goal || 50
+		const percentage = hours/goal
 		let progressBarCont = {
 			gridTemplateColumns: `minmax(12vh, ${percentage*100}%) auto minmax(5%, 12vh)`
 		}
@@ -15,17 +16,14 @@ const ProgressBar = (props) => {
 				<h1>{parseInt(percentage*100, 10)}% complete</h1>
 				<div id="progress-bar-container" style={progressBarCont}>
 					<div id="progress-so-far">
-						<div id="progress-label-circle">{props.hours}h</div>
+						<div id="progress-label-circle">{hours}h</div>
 					</div>
 					<div id="progress-separator" />
-					<div id="progress-remainder">{props.goal}h</div>
+					<div id="progress-remainder">{goal}h</div>
 				</div>
 			</div>
 		</div>
 		)
-	} else {
-		return null
-	}
 }
 
 const mapStateToProps = (state) => {

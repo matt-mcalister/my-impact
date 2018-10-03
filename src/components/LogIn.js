@@ -1,5 +1,5 @@
 import React from "react"
-import { setParticipant, redirect } from "../actions"
+import { clearError, redirect } from "../actions"
 import { connect } from 'react-redux'
 import { auth } from '../firebase';
 
@@ -22,6 +22,12 @@ class LogIn extends React.Component {
 		auth.doSignInWithEmailAndPassword(this.state.email, this.state.password)
 	}
 
+	componentDidUpdate(prevProps, prevState){
+		if (this.props.authError) {
+			alert(this.props.authError.message)
+			this.props.clearError()
+		}
+	}
 
 	render(){
 		return (
@@ -38,4 +44,4 @@ class LogIn extends React.Component {
 	}
 }
 
-export default connect(null, { setParticipant, redirect })(LogIn)
+export default connect(state => ({authError: state.auth.authError}), { clearError, redirect })(LogIn)

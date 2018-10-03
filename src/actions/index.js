@@ -1,6 +1,6 @@
 import * as actions from './types'
 import { push } from 'connected-react-router'
-import { firebase } from '../firebase'
+import { firebase, auth } from '../firebase'
 
 
 export const setAuthUser = (uid) => {
@@ -26,9 +26,50 @@ export const setAuthUser = (uid) => {
           }
         })
       } else {
-        dispatch(push("/avatar"))
+        dispatch(push("/settings/avatar"))
       }
     })
+  }
+}
+
+export const createAuthUser = ({ name, username, email, password }) => {
+  return (dispatch) => {
+    dispatch({
+      type: actions.CREATE_AUTH_USER,
+      payload: {
+        name,
+        username,
+      }
+    })
+    auth.doCreateUserWithEmailAndPassword(email, password)
+      .then(resp => {
+        const newParticipant = {
+          id: resp.user.uid,
+          name,
+          username,
+          goal: 50,
+          isAdmin: false,
+          isGoalPublic: false,
+          isVerified: false,
+          usernameIndex: username,
+        }
+        firebase.db.collection('participant').doc(resp.user.uid).set(newParticipant)
+        dispatch({
+          type: actions.SET_PARTICIPANT,
+          payload: newParticipant,
+        })
+        dispatch(push("/settings/avatar"))
+      })
+      .catch(err => dispatch({
+        type: actions.AUTH_ERROR,
+        payload: err,
+      }))
+  }
+}
+
+export const clearError = () => {
+  return {
+    type: actions.CLEAR_ERROR
   }
 }
 
@@ -172,6 +213,7 @@ export const updateImage = (image, id) => {
       type: actions.UPDATE_IMAGE,
       payload: image,
     })
+    dispatch(push("/settings"))
   }
 }
 
