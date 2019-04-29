@@ -5,7 +5,7 @@ import { updateGoal, redirect } from "../actions"
 
 
 const countdownInDays = (goal) => {
-	return Math.abs((new Date(goal) - new Date())/86400000 | 0);
+	return ((new Date(goal) - new Date())/86400000 | 0);
 }
 
 class AccountSettings extends React.Component {
